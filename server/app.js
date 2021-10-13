@@ -22,7 +22,7 @@ app.post('/create-user',async(req,res)=>{
     const hash =  bcrypt.hashSync(password, 10);
     try{
         const dbRes = await pool.query(
-            'INSERT INTO users (Email, Hash) VALUES ($1, $2) RETURNING *;',
+            'INSERT INTO users (email, hash) VALUES ($1, $2) RETURNING *;',
             [email, hash]
         );
         res.json('User Created');

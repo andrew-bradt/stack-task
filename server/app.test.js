@@ -21,9 +21,9 @@ describe('ACCOUNT',()=>{
             } else {
                 expect(todos).arrayContaining(expect=>{
                     expect.objectContaining({
-                        User_id:expect.any(Number),
-                        Task:expect.any(String),
-                        Description:expect.any(String) || null
+                        user_id:expect.any(Number),
+                        task:expect.any(String),
+                        description:expect.any(String) || null
                     })
                 })
             }
@@ -31,4 +31,26 @@ describe('ACCOUNT',()=>{
     })
 });
 
+describe('TODOS',()=>{
+    it('Add A TODO',()=>{
+        return request(app).post('/add-todo').send({user_id,title, description})
+        .then(res=>{
+            const newTodo = res.body;
+            expect(newTodo).objectContaining({
+                task_id:expect.any(Number),
+                task:expect.any(String),
+                description:expect.any(String) || null,
+                user_id:expect.toBe(user_id)
+            })
+        })
+    });
+
+    it('Remove A TODO',()=>{
+
+    });
+
+    it('Modify A TODO',()=>{
+
+    });
+})
 
