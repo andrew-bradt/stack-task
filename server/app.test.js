@@ -33,9 +33,9 @@ describe('ACCOUNT',()=>{
 
 describe('TODOS',()=>{
     it('Add A TODO',()=>{
-        return request(app).post('/add-todo').send({user_id,title, description})
+        return request(app).post('/add-todo/:user_id').send({title, description})
         .then(res=>{
-            const newTodo = res.body;
+            const newTodo = res.body[0];
             expect(newTodo).objectContaining({
                 task_id:expect.any(Number),
                 task:expect.any(String),
@@ -46,11 +46,23 @@ describe('TODOS',()=>{
     });
 
     it('Remove A TODO',()=>{
-
+        return request(app).delete('/remove-todo/:user_id/:todo_id')
+        .then(res=>{
+            expect(res.body).toBe('Task Deleted');
+        })
     });
 
     it('Modify A TODO',()=>{
-
+        return request(app).put('/change-todo/:user_id/:todo_id').send({title, description})
+        .then(res=>{
+            const modifiedTodo = res.body[0];
+            expect(modifiedTodo).objectContaining({
+                task_id:expect.any(Number),
+                task:expect.any(String),
+                description:expect.any(String) || null,
+                user_id:expect.toBe(user_id)
+            })
+        })
     });
 })
 
