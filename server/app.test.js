@@ -6,6 +6,9 @@ const {newEmail, newPassword} = require('./chancetest');
 const title = 'Wash Laundry';
 const user_id = 19;
 const description = "delicates only";
+const existingTodo_id = 1;
+const newTitle = 'Organize room'
+const newDescription = 'closet items';  
 
 describe('ACCOUNT',()=>{
     it('User Should Successfully Create Account',()=>{
@@ -41,8 +44,7 @@ describe('ACCOUNT',()=>{
 
 describe('TODOS',()=>{
     it('Add A TODO',()=>{
-        
-        return request(app).post(`/add-todo/${user_id}`).send({title, description})
+        return request(app).post(`/add-todo?user_id=${user_id}`).send({title, description})
         .then(res=>{
             const newTodo = res.body;
             expect(newTodo).toEqual(expect.objectContaining({
@@ -54,21 +56,21 @@ describe('TODOS',()=>{
     });
 
     it('Remove A TODO',()=>{
-        return request(app).delete(`/remove-todo/${user_id}`)
+        return request(app).delete(`/remove-todo/${1}`)
         .then(res=>{
-            expect(res.body).toBe('Task Deleted');
+            const deleteMessage = res.body;
+            expect(deleteMessage).toBe('Task Deleted');
         })
     });
 
     it('Modify A TODO',()=>{
-        return request(app).put(`/change-todo/${user_id}/${todo_id}`).send({title, description})
+        return request(app).put(`/change-todo/${existingTodo_id}`).send({title:newTitle, description:newDescription})
         .then(res=>{
             const modifiedTodo = res.body[0];
             expect(modifiedTodo).objectContaining({
-                task_id:expect.any(Number),
-                task:expect.any(String),
-                description:expect.any(String) || null,
-                user_id:expect.toBe(user_id)
+                todo_id:expect.toBe(existingTodo_id),
+                task:expect.toBe(title),
+                description:expect.toBe(description) || null
             })
         })
     });

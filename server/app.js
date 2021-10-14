@@ -54,8 +54,8 @@ app.post('/login', async (req, res) => {
     }
 });
 
-app.post('/add-todo/:user_id',async(req,res)=>{
-    const {user_id} = req.params;
+app.post('/add-todo',async(req,res)=>{
+    const {user_id} = req.query;
     const {title,description} = req.body;
     try{
         const queryRes = await pool.query(
@@ -69,7 +69,38 @@ app.post('/add-todo/:user_id',async(req,res)=>{
     } catch (err){
         console.error(err.message);
     }
-
 })
+
+app.delete('/remove/:todo_id',async(req,res)=>{
+    const {todo_id} = req.params;
+    try{
+        const queryRes = await pool.query(
+            'DELETE FROM todos WHERE todo_id=$1',
+            [todo_id]
+        )
+        res.json('Task Deleted');
+    } catch(err){
+        console.error(err.message);
+    }
+})
+
+// app.put('/change-todo/:todo_id',async(req,res)=>{
+//     const {todo_id} = req.params;
+//     const {title,description} = req.body;
+//     try{
+//         const queryRes = await pool.query(
+//             `UPDATE todos
+//             SET (title, description)
+//             VALUES ($2, $3)
+//             WHERE todo_id=$1
+//             RETURNING todo_id, title, description`,
+//             [todo_id, title, description]
+//         ); 
+//         res.json(queryRes.rows[0]);
+//     } catch (err){
+//         console.error(err.message);
+//     }
+// })
+
 
 module.exports = app;
