@@ -3,6 +3,9 @@ const app = require('./app');
 const currentUser = 'testuser@gmail.com';
 const currentPassword = '9999';
 const {newEmail, newPassword} = require('./chancetest');
+const title = 'Wash Laundry';
+const user_id = 19;
+const description = "delicates only";
 
 describe('ACCOUNT',()=>{
     it('User Should Successfully Create Account',()=>{
@@ -38,9 +41,7 @@ describe('ACCOUNT',()=>{
 
 describe('TODOS',()=>{
     it('Add A TODO',()=>{
-        const title = 'Wash Laundry';
-        const user_id = 19;
-        const description = "delicates only";
+        
         return request(app).post(`/add-todo/${user_id}`).send({title, description})
         .then(res=>{
             const newTodo = res.body;
@@ -53,14 +54,14 @@ describe('TODOS',()=>{
     });
 
     it('Remove A TODO',()=>{
-        return request(app).delete('/remove-todo?user_id=19')
+        return request(app).delete(`/remove-todo/${user_id}`)
         .then(res=>{
             expect(res.body).toBe('Task Deleted');
         })
     });
 
     it('Modify A TODO',()=>{
-        return request(app).put('/change-todo/:user_id/:todo_id').send({title, description})
+        return request(app).put(`/change-todo/${user_id}/${todo_id}`).send({title, description})
         .then(res=>{
             const modifiedTodo = res.body[0];
             expect(modifiedTodo).objectContaining({
