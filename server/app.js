@@ -75,7 +75,7 @@ app.post('/add-todo',async(req,res)=>{
     }
 })
 
-app.delete('/remove',async(req,res)=>{
+app.delete('/remove-todo',async(req,res)=>{
     const {todo_id} = req.query;
     try{
         const queryRes = await pool.query(
