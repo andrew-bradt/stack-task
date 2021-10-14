@@ -41,14 +41,13 @@ describe('TODOS',()=>{
         const title = 'Wash Laundry';
         const user_id = 19;
         const description = "delicates only";
-        return request(app).post(`/add-todo?user_id=${user_id}`).send({title, description})
+        return request(app).post(`/add-todo/${user_id}`).send({title, description})
         .then(res=>{
             const newTodo = res.body;
             expect(newTodo).toEqual(expect.objectContaining({
-                task_id:expect.any(Number),
+                todo_id:expect.any(Number),
                 title:expect.any(String),
-                description:expect.any(String) || null,
-                user_id:19
+                description:expect.any(String) || null
             }))
         })
     });

@@ -62,7 +62,7 @@ app.post('/add-todo/:user_id',async(req,res)=>{
             `INSERT INTO 
             todos (title, description, user_id) 
             VALUES ($1, $2, $3) 
-            RETURNING *`,
+            RETURNING todo_id, title, description`,
             [title, description, user_id]
         ); 
         res.json(queryRes.rows[0]);
