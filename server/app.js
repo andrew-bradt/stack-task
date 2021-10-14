@@ -41,7 +41,12 @@ app.post('/login', async (req, res) => {
         const { hash } = queryRes.rows[0];
         const doesPasswordMatch = bcrypt.compareSync(password, hash);
         if (doesPasswordMatch) {
-            const data = queryRes.rows.map(({user_id,email, hash,...todos})=>todos);
+            const {user_id} = queryRes.rows[0];
+            const todos = queryRes.rows.map(({user_id,email, hash,...todos})=>todos);
+            const data = {
+                user_id,
+                todos
+            }
             res.json(data);
         }
     } catch (err) {

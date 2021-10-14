@@ -16,18 +16,21 @@ describe('ACCOUNT',()=>{
         return request(app).post('/login').send({email:currentUser, password:currentPassword})
         .then(res=>{
             const todos = res.body;
-
             if(todos.length === 0){
                 expect(todos).toBe([]);
             } else {
                 expect(todos).toEqual(
-                    expect.arrayContaining([
-                        expect.objectContaining({
-                            todo_id:expect.any(Number),
-                            title:expect.any(String),
-                            description:expect.any(String) || null
-                        })
-                ]))
+                    expect.objectContaining({
+                        user_id:expect.any(Number),
+                        todos:expect.arrayContaining([
+                            expect.objectContaining({
+                                todo_id:expect.any(Number),
+                                title:expect.any(String),
+                                description:expect.any(String) || null
+                            })
+                        ])
+                    })
+                )
             }
         })
     })
