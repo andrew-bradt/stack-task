@@ -64,14 +64,14 @@ describe('TODOS',()=>{
     });
 
     it('Modify A TODO',()=>{
-        return request(app).put(`/change-todo/${existingTodo_id}`).send({title:newTitle, description:newDescription})
+        return request(app).put(`/change-todo?todo_id=${20}`).send({title:newTitle, description:newDescription})
         .then(res=>{
-            const modifiedTodo = res.body[0];
-            expect(modifiedTodo).objectContaining({
-                todo_id:expect.toBe(existingTodo_id),
-                task:expect.toBe(title),
-                description:expect.toBe(description) || null
-            })
+            const modifiedTodo = res.body;
+            expect(modifiedTodo).toEqual(expect.objectContaining({
+                todo_id:expect.any(Number),
+                title:expect.any(String),
+                description:expect.any(String) || null
+            }))
         })
     });
 })
