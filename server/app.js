@@ -34,18 +34,20 @@ app.post('/create-user', async (req, res) => {
 app.post('/login', async (req, res) => {
     const { email, password } = req.body;
     try {
-        const queryRes = await pool.query(
-            'SELECT * FROM users JOIN todos ON users.user_id=todos.user_id WHERE email=$1',
+        const userRes = await pool.query(
+            'SELECT user_id, hash FROM users WHERE email=$1',
             [email]
         );
-        const { hash } = queryRes.rows[0];
+        const { hash, user_id } = userRes.rows[0];
         const doesPasswordMatch = bcrypt.compareSync(password, hash);
         if (doesPasswordMatch) {
-            const {user_id} = queryRes.rows[0];
-            const todos = queryRes.rows.map(({user_id,email, hash,...todos})=>todos);
+            const todosRes = await pool.query(
+                'SELECT todo_id, title, description FROM todos WHERE user_id=$1',
+                [user_id]
+            )
             const data = {
                 user_id,
-                todos
+                todos:todosRes.rows
             }
             res.json(data);
         }
@@ -59,10 +61,12 @@ app.post('/add-todo',async(req,res)=>{
     const {title,description} = req.body;
     try{
         const queryRes = await pool.query(
-            `INSERT INTO 
+            `
+            INSERT INTO 
             todos (title, description, user_id) 
-            VALUES ($1, $2, $3) 
-            RETURNING todo_id, title, description`,
+            VALUES ($1, $2, $3)
+            RETURNING todo_id, title, description
+            `,
             [title, description, user_id]
         ); 
         res.json(queryRes.rows[0]);
@@ -71,8 +75,8 @@ app.post('/add-todo',async(req,res)=>{
     }
 })
 
-app.delete('/remove/:todo_id',async(req,res)=>{
-    const {todo_id} = req.params;
+app.delete('/remove',async(req,res)=>{
+    const {todo_id} = req.query;
     try{
         const queryRes = await pool.query(
             'DELETE FROM todos WHERE todo_id=$1',

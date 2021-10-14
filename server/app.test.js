@@ -56,7 +56,7 @@ describe('TODOS',()=>{
     });
 
     it('Remove A TODO',()=>{
-        return request(app).delete(`/remove-todo/${1}`)
+        return request(app).delete(`/remove-todo?todo_id=${2}`)
         .then(res=>{
             const deleteMessage = res.body;
             expect(deleteMessage).toBe('Task Deleted');
