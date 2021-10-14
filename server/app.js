@@ -17,18 +17,54 @@ app.use(cookieParser());
 app.use(cors());
 app.use(express.json());
 
-app.post('/create-user',async(req,res)=>{
-    const {email, password} = req.body;
-    const hash =  bcrypt.hashSync(password, 10);
-    try{
+app.post('/create-user', async (req, res) => {
+    const { email, password } = req.body;
+    const hash = bcrypt.hashSync(password, 10);
+    try {
         const dbRes = await pool.query(
-            'INSERT INTO users (email, hash) VALUES ($1, $2) RETURNING *;',
+            'INSERT INTO users (email, hash) VALUES ($1, $2)',
             [email, hash]
         );
         res.json('User Created');
-    } catch(err){
+    } catch (err) {
         console.error(err.message);
     }
 });
+
+app.post('/login', async (req, res) => {
+    const { email, password } = req.body;
+    try {
+        const dbRes = await pool.query(
+            'SELECT * FROM users JOIN todos ON users.user_id=todos.user_id WHERE email=$1',
+            [email]
+        );
+        const { hash } = dbRes.rows[0];
+        const doesPasswordMatch = bcrypt.compareSync(password, hash);
+        if (doesPasswordMatch) {
+            const data = dbRes.rows.map(({user_id,email, hash,...todos})=>todos);
+            res.json(data);
+        }
+    } catch (err) {
+        console.error(err.message);
+    }
+});
+
+// app.post('/add-todo/:user_id',async(req,res)=>{
+//     const {user_id} = req.params;
+//     const {title,description} = req.body;
+//     try{
+//         const queryRes = await pool.query(
+//             `INSERT INTO 
+//             todos (title, description, user_id) 
+//             VALUES ($1, $2, $3) 
+//             RETURNING *`,
+//             [title, description, user_id]
+//         ); 
+//         res.json(queryRes.rows[0]);
+//     } catch (err){
+//         console.error(err.message);
+//     }
+
+// })
 
 module.exports = app;
