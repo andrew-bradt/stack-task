@@ -1,7 +1,7 @@
 import {render, screen} from '@testing-library/react';
 import LoginForm from './LoginForm';
 
-it('Should have a username, password field, and submit button',()=>{
+it('Should have a username, password field, and login button',()=>{
     render(<LoginForm/>);
 
     const email = screen.getByLabelText(/email/i);
