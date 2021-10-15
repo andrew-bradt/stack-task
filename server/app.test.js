@@ -21,28 +21,37 @@ describe('ACCOUNT',()=>{
     it('User Should Successfully Log-In',()=>{
         return request(app).post('/login').send({email:currentUser, password:currentPassword})
         .then(res=>{
-            const todos = res.body;
-            if(todos.length === 0){
-                expect(todos).toBe([]);
-            } else {
-                expect(todos).toEqual(
-                    expect.objectContaining({
-                        user_id:expect.any(Number),
-                        todos:expect.arrayContaining([
-                            expect.objectContaining({
-                                todo_id:expect.any(Number),
-                                title:expect.any(String),
-                                description:expect.any(String) || null
-                            })
-                        ])
-                    })
-                )
-            }
+            const todos = res.body
+            expect(todos).toEqual(
+                expect.objectContaining({
+                    user_id:expect.any(Number)
+                })
+            )
         })
     })
 });
 
 describe('TODOS',()=>{
+    it('Should Get All of a Users Todos',()=>{
+        return request(app).get(`/get-todos?user_id=${user_id}`)
+        .then(res=>{
+            const todos = res.body;
+            if(todos.length === 0){
+                expect(todos).toBe([]);
+            } else {
+                expect(todos).toEqual(
+                    expect.arrayContaining([
+                        expect.objectContaining({
+                            todo_id:expect.any(Number),
+                            title:expect.any(String),
+                            description:expect.any(String) || null
+                        })
+                    ])
+                )
+            }
+        })
+    })
+
     it('Add A TODO',()=>{
         return request(app).post(`/add-todo?user_id=${user_id}`).send({title, description})
         .then(res=>{

@@ -41,20 +41,25 @@ app.post('/login', async (req, res) => {
         const { hash, user_id } = userRes.rows[0];
         const doesPasswordMatch = bcrypt.compareSync(password, hash);
         if (doesPasswordMatch) {
-            const todosRes = await pool.query(
-                'SELECT todo_id, title, description FROM todos WHERE user_id=$1',
-                [user_id]
-            )
-            const data = {
-                user_id,
-                todos:todosRes.rows
-            }
-            res.json(data);
+            res.json({user_id});
         }
     } catch (err) {
         console.error(err.message);
     }
 });
+
+app.get('/get-todos',async(req,res)=>{
+    const {user_id} = req.query;
+    try{
+        const todosRes = await pool.query(
+            'SELECT todo_id, title, description FROM todos WHERE user_id=$1',
+            [user_id]
+        )        
+        res.json(todosRes.rows);    
+    } catch(err){
+        console.error(err.message);
+    }
+})
 
 app.post('/add-todo',async(req,res)=>{
     const {user_id} = req.query;
@@ -104,6 +109,5 @@ app.put('/change-todo',async(req,res)=>{
         console.error(err.message);
     }
 })
-
 
 module.exports = app;
