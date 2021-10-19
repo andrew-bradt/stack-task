@@ -1,15 +1,13 @@
+// Dependencies
 require('dotenv').config();
 const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const cors = require('cors');
-const bcrypt = require('bcrypt');
-
 const app = express();
 
-const pool = require('./db');
-
+// App-Level Middleware
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -17,97 +15,23 @@ app.use(cookieParser());
 app.use(cors());
 app.use(express.json());
 
-app.post('/create-user', async (req, res) => {
-    const { email, password } = req.body;
-    const hash = bcrypt.hashSync(password, 10);
-    try {
-        const queryRes = await pool.query(
-            'INSERT INTO users (email, hash) VALUES ($1, $2)',
-            [email, hash]
-        );
-        res.json('User Created');
-    } catch (err) {
-        console.error(err.message);
-    }
-});
+// Route Imports
+const createUser = require('./routes/create-user');
+const login = require('./routes/login');
+const addTodo = require('./routes/add-todo');
+const getTodos = require('./routes/get-todos');
+const removeTodo = require('./routes/remove-todo');
+const changeTodo = require('./routes/change-todo');
+/* -- Routes -- */
 
-app.post('/login', async (req, res) => {
-    const { email, password } = req.body;
-    try {
-        const userRes = await pool.query(
-            'SELECT user_id, hash FROM users WHERE email=$1',
-            [email]
-        );
-        const { hash, user_id } = userRes.rows[0];
-        const doesPasswordMatch = bcrypt.compareSync(password, hash);
-        if (doesPasswordMatch) {
-            res.json({user_id});
-        }
-    } catch (err) {
-        console.error(err.message);
-    }
-});
+// Account
+app.use('/create-user', createUser);
+app.use('/login', login);
 
-app.get('/get-todos',async(req,res)=>{
-    const {user_id} = req.query;
-    try{
-        const todosRes = await pool.query(
-            'SELECT todo_id, title, description FROM todos WHERE user_id=$1',
-            [user_id]
-        )        
-        res.json(todosRes.rows);    
-    } catch(err){
-        console.error(err.message);
-    }
-})
-
-app.post('/add-todo',async(req,res)=>{
-    const {user_id} = req.query;
-    const {title,description} = req.body;
-    try{
-        const queryRes = await pool.query(
-            `
-            INSERT INTO 
-            todos (title, description, user_id) 
-            VALUES ($1, $2, $3)
-            RETURNING todo_id, title, description
-            `,
-            [title, description, user_id]
-        ); 
-        res.json(queryRes.rows[0]);
-    } catch (err){
-        console.error(err.message);
-    }
-})
-
-app.delete('/remove-todo',async(req,res)=>{
-    const {todo_id} = req.query;
-    try{
-        const queryRes = await pool.query(
-            'DELETE FROM todos WHERE todo_id=$1',
-            [todo_id]
-        )
-        res.json('Task Deleted');
-    } catch(err){
-        console.error(err.message);
-    }
-})
-
-app.put('/change-todo',async(req,res)=>{
-    const {todo_id} = req.query;
-    const {title,description} = req.body;
-    try{
-        const queryRes = await pool.query(
-            `UPDATE todos
-            SET title = $2, description = $3
-            WHERE todo_id=$1
-            RETURNING todo_id, title, description`,
-            [todo_id, title, description]
-        ); 
-        res.json(queryRes.rows[0]);
-    } catch (err){
-        console.error(err.message);
-    }
-})
+// TODO Operations
+app.use('/add-todo', addTodo);
+app.use('/get-todos', getTodos);
+app.use('/remove-todo', removeTodo);
+app.use('/change-todo', changeTodo);
 
 module.exports = app;
