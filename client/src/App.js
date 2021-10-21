@@ -1,20 +1,26 @@
 import './App.css';
-import {BrowserRouter as Router, Switch, Route, Link} from 'react-router-dom';
-
+import {useState,useEffect} from 'react';
+import {BrowserRouter as Router, Switch, Route, Link, useHistory} from 'react-router-dom';
+// Custom Components
+import Login from './account_components/Login';
+import SignUp from './account_components/SignUp';
+import Todos from './todos_components/Todos';
 
 function App() {
+  const [user_id,setUserId] = useState(null);
+  const onUserId = (id)=>setUserId(id);
   return (
     <div className="App">
       <Router>
           <Switch>
             <Route exact path="/">
-              Login
+              <Login onUserId={onUserId}/>
             </Route>
             <Route path="/sign-up">
-              Sign Up
+              <SignUp/>
             </Route>
             <Route path="/todos">
-              Todos
+              <Todos/>
             </Route>
           </Switch>
       </Router>
