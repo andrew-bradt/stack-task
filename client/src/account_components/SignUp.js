@@ -2,6 +2,7 @@ import React,{useState,Fragment} from 'react';
 import {useHistory} from 'react-router-dom';
 // Material UI
 import TextField from '@material-ui/core/TextField';
+import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import Container from '@material-ui/core/Container';
 import Paper from '@material-ui/core/Paper';
@@ -26,6 +27,9 @@ const useStyles = makeStyles({
     },
     btnshort:{
         width:'30%'
+    },
+    error:{
+        marginTop:-10,
     }
 });
 
@@ -40,7 +44,8 @@ export default function SignUp({onUserId}) {
     });
     const [emailError, setEmailError] = useState(false);
     const [passwordError, setPasswordError] = useState(false);
-    const [passwordsDontMatch, setPasswordsDontMatch] = useState(false);    
+    const [passwordsDontMatch, setPasswordsDontMatch] = useState(false);
+    const [errorMessage, setErrorMessage] = useState('');
     const {email, password, confirmPassword} = userCredentials;
     // Handlers
     const checkPasswordMatch = ()=>{
@@ -62,6 +67,7 @@ export default function SignUp({onUserId}) {
         setEmailError(false);
         setPasswordError(false);
         setPasswordsDontMatch(false);
+        setErrorMessage('');
     };
     const onChange = (e)=>{
         const {id, value} = e.target;
@@ -82,6 +88,8 @@ export default function SignUp({onUserId}) {
         if(data.user_id){
             onUserId(data.user_id);
             history.push('/todos');
+        } else {
+            setErrorMessage(data.msg);
         }
     }
     // Rendering
@@ -97,9 +105,13 @@ export default function SignUp({onUserId}) {
                     <TextField className={classes.field}required type='password' id='passwordsMatch' variant='outlined' label='Confirm Password' fullWidth onChange={onChange} error={passwordsDontMatch}></TextField>
                     <Button className={[classes.btn, classes.btnlong]} type='submit' color='primary' variant='contained' onClick={(e)=>onSubmit(e)}>Sign Up</Button>
                 </form>
+                {
+                    (errorMessage)?<Typography className={classes.error} variant='p'>{errorMessage}</Typography>:<Fragment></Fragment>
+                }
                 <Divider light style={{marginBottom:20}}/>
                 <Button className={classes.btnshort} color='secondary' variant='outlined' onClick={()=>history.push('/')}>Log In</Button>
             </Paper>
+
         </Container>
     )
 }
