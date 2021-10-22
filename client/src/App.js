@@ -7,12 +7,15 @@ import SignUp from './account_components/SignUp';
 import Todos from './todos_components/Todos';
 import Layout from './containers/Layout';
 function App() {
+  // Hooks
   const [user_id,setUserId] = useState(null);
+  const history = useHistory();
+  // Handlers
   const onUserId = (id)=>setUserId(id);
   return (
     <div className="App">
       <Router>
-        <Layout user_id={user_id}>
+        <Layout user_id={user_id} onUserId={onUserId}>
           <Switch>
             <Route exact path="/">
               <Login onUserId={onUserId}/>
