@@ -16,12 +16,21 @@ function App() {
     (id)?setMountComponent('todos'):setMountComponent('login');
   };
 
+  const swapComponents = (page)=>{
+    switch(page){
+      case 'login':
+        return <Login onUserId={onUserId} toSignUp={setMountComponent}/>;
+      case 'sign-up':
+        return <SignUp onUserId={onUserId} toLogin={setMountComponent}/>;
+      case 'todos':
+        return <Todos user_id={user_id}/>;
+    }
+  }
+
   return (
     <div className="App">
         <Layout user_id={user_id} onUserId={onUserId} onSignOut={setMountComponent}>
-              <Login onUserId={onUserId} toSignUp={setMountComponent}/>
-              <SignUp onUserId={onUserId} toLogin={setMountComponent}/>
-              <Todos user_id={user_id}/>
+          {swapComponents(mountComponent)}
         </Layout>
     </div>
   );
