@@ -8,10 +8,10 @@ router.post('/', async (req, res) => {
     const hash = bcrypt.hashSync(password, 10);
     try {
         const queryRes = await pool.query(
-            'INSERT INTO users (email, hash) VALUES ($1, $2)',
+            'INSERT INTO users (email, hash) VALUES ($1, $2) RETURNING user_id',
             [email, hash]
         );
-        res.json('User Created');
+        res.json(queryRes.rows[0]);
     } catch (err) {
         console.error(err.message);
     }

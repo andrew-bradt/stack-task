@@ -18,7 +18,7 @@ function App() {
               <Login onUserId={onUserId}/>
             </Route>
             <Route path="/sign-up">
-              <SignUp/>
+              <SignUp onUserId={onUserId}/>
             </Route>
             <Route path="/todos">
               <Todos user_id={user_id}/>
