@@ -33,7 +33,7 @@ const useStyles = makeStyles({
     }
 });
 
-export default function SignUp({onUserId}) {
+export default function SignUp({onUserId, toLogin}) {
     // State
     const classes = useStyles();
     const history = useHistory();
@@ -87,7 +87,6 @@ export default function SignUp({onUserId}) {
         const data = await res.json();
         if(data.user_id){
             onUserId(data.user_id);
-            history.push('/todos');
         } else {
             setErrorMessage(data.msg);
         }
@@ -109,7 +108,7 @@ export default function SignUp({onUserId}) {
                     (errorMessage)?<Typography className={classes.error} variant='p'>{errorMessage}</Typography>:<Fragment></Fragment>
                 }
                 <Divider light style={{marginBottom:20}}/>
-                <Button className={classes.btnshort} color='secondary' variant='outlined' onClick={()=>history.push('/')}>Log In</Button>
+                <Button className={classes.btnshort} color='secondary' variant='outlined' onClick={()=>toLogin('login')}>Log In</Button>
             </Paper>
 
         </Container>

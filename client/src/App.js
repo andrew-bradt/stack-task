@@ -9,26 +9,20 @@ import Layout from './containers/Layout';
 function App() {
   // Hooks
   const [user_id,setUserId] = useState(null);
-  const history = useHistory();
+  const [mountComponent, setMountComponent] = useState('login');
   // Handlers
-  const onUserId = (id)=>setUserId(id);
+  const onUserId = (id)=>{
+    setUserId(id);
+    (id)?setMountComponent('todos'):setMountComponent('login');
+  };
+
   return (
     <div className="App">
-      <Router>
-        <Layout user_id={user_id} onUserId={onUserId}>
-          <Switch>
-            <Route exact path="/">
-              <Login onUserId={onUserId}/>
-            </Route>
-            <Route path="/sign-up">
-              <SignUp onUserId={onUserId}/>
-            </Route>
-            <Route path="/todos">
+        <Layout user_id={user_id} onUserId={onUserId} onSignOut={setMountComponent}>
+              <Login onUserId={onUserId} toSignUp={setMountComponent}/>
+              <SignUp onUserId={onUserId} toLogin={setMountComponent}/>
               <Todos user_id={user_id}/>
-            </Route>
-          </Switch>
         </Layout>
-      </Router>
     </div>
   );
 }

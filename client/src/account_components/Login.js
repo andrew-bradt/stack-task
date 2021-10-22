@@ -29,7 +29,7 @@ const useStyles = makeStyles({
     }
 });
 
-export default function Login({onUserId}) {
+export default function Login({onUserId, toSignUp}) {
     // State
     const classes = useStyles();
     const history = useHistory();
@@ -68,7 +68,6 @@ export default function Login({onUserId}) {
         const data = await res.json();
         if(data.user_id){
             onUserId(data.user_id);
-            history.push('/todos');
         }
     }
     // Rendering
@@ -84,7 +83,7 @@ export default function Login({onUserId}) {
                     <Button className={[classes.btn, classes.btnlong]} type='submit' color='primary' variant='contained' onClick={(e)=>onSubmit(e)}>Log In</Button>
                 </form>
                 <Divider light style={{marginBottom:20}}/>
-                <Button className={classes.btnshort} color='secondary' variant='outlined' onClick={()=>history.push('/sign-up')}>Sign Up</Button>
+                <Button className={classes.btnshort} color='secondary' variant='outlined' onClick={()=>toSignUp('sign-up')}>Sign Up</Button>
             </Paper>
         </Container>
     )
