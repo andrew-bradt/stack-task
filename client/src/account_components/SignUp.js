@@ -83,7 +83,6 @@ export default function SignUp({onUserId}) {
             onUserId(data.user_id);
             history.push('/todos');
         }
-        console.log(userCredentials);
     }
     // Rendering
     return (
