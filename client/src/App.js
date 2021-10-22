@@ -12,7 +12,7 @@ function App() {
   return (
     <div className="App">
       <Router>
-        <Layout>
+        <Layout user_id={user_id}>
           <Switch>
             <Route exact path="/">
               <Login onUserId={onUserId}/>
