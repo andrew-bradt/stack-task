@@ -7,12 +7,9 @@ import Button from '@material-ui/core/Button';
 const useStyles = makeStyles({
     root:{
         minHeight:'100vh',
-<<<<<<< HEAD
         display:'flex', 
         flexDirection:'row',
-=======
         display:'flex',
->>>>>>> login
         justifyContent:'center',
         alignItems:'center'
     }
