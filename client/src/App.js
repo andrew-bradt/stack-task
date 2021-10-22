@@ -5,13 +5,14 @@ import {BrowserRouter as Router, Switch, Route, Link, useHistory} from 'react-ro
 import Login from './account_components/Login';
 import SignUp from './account_components/SignUp';
 import Todos from './todos_components/Todos';
-
+import Layout from './containers/Layout';
 function App() {
   const [user_id,setUserId] = useState(null);
   const onUserId = (id)=>setUserId(id);
   return (
     <div className="App">
       <Router>
+        <Layout>
           <Switch>
             <Route exact path="/">
               <Login onUserId={onUserId}/>
@@ -20,9 +21,10 @@ function App() {
               <SignUp/>
             </Route>
             <Route path="/todos">
-              <Todos/>
+              <Todos user_id={user_id}/>
             </Route>
           </Switch>
+        </Layout>
       </Router>
     </div>
   );
