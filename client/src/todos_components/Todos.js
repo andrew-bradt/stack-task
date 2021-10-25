@@ -32,7 +32,6 @@ export default function Todos({user_id}) {
             })();
         }
     },[]);
-    // Handlers
     const eraseTodo = async(id)=>{
         const response = await fetch(`/remove-todo?todo_id=${id}`,{
             method:'DELETE'
@@ -68,10 +67,22 @@ export default function Todos({user_id}) {
         setEditTodo(null);
         changeToDo(overwrittenTodo);
     };
+    const addTaskToDb = async(user_id, todo)=>{
+        const response = await fetch(`/add-todo?user_id=${user_id}`,{
+            method:'POST',
+            headers:{"Content-Type":"application/json"},
+            body:JSON.stringify(todo)
+        });
+        const data = await response.json();
+        const updatedTodos = [...todos,data];
+        setTodos(updatedTodos);
+    }
+
     return (
         <Fragment>
             <Container className={classes.container}>
                 <List>
+                    <AddTask addTaskToDb={addTaskToDb} user_id={user_id}/>
                     {
                         (todos.length>0)
                         ?

@@ -7,7 +7,6 @@ import Container from '@material-ui/core/Container';
 import Paper from '@material-ui/core/Paper';
 import Divider from '@material-ui/core/Divider';
 import { makeStyles } from '@material-ui/core';
-
 const useStyles = makeStyles({
     paper: {
         width: '360px',
@@ -28,7 +27,6 @@ const useStyles = makeStyles({
         width: '30%'
     }
 });
-
 export default function Login({ onUserId, toSignUp }) {
     // State
     const classes = useStyles();
@@ -39,8 +37,6 @@ export default function Login({ onUserId, toSignUp }) {
     });
     const [emailError, setEmailError] = useState(false);
     const [passwordError, setPasswordError] = useState(false);
-    // Styles
-
     // Handlers
     const onChange = (e) => {
         const { id, value } = e.target;

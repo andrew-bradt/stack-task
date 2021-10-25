@@ -16,7 +16,6 @@ function App() {
     setUserId(id);
     (id)?setMountComponent('todos'):setMountComponent('login');
   };
-
   const swapComponents = (page)=>{
     switch(page){
       case 'login':
@@ -27,7 +26,6 @@ function App() {
         return <Todos user_id={user_id}/>;
     }
   }
-
   return (
     <div className="App">
         <Layout user_id={user_id} onUserId={onUserId} onSignOut={setMountComponent}>
