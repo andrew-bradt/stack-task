@@ -1,3 +1,5 @@
+// --
+
 // Modules - Misc
 import React,{useState, Fragment} from 'react';
 import {makeStyles} from '@material-ui/core';
@@ -17,7 +19,18 @@ import CreateIcon from '@material-ui/icons/Create';
 import ClearIcon from '@material-ui/icons/Clear';
 import SaveIcon from '@material-ui/icons/Save';
 // Custom Components
+const useStyles = makeStyles({
+    title:{
+        textDecoration:'underline',
+        marginBottom:20
+    },
+    description:{
+        marginRight:20,
+        textAlign:'left'
+    }
+});
 export default function Todo({todo, onDelete, onToggleEdit}) {
+    const classes = useStyles();
     const {todo_id, title, description} = todo;
     const [editTitle, setEditTitle] = useState(title);
     const [editDescription, setEditDescription] = useState(description);
@@ -27,11 +40,15 @@ export default function Todo({todo, onDelete, onToggleEdit}) {
                 <CardContent>
                         <Typography
                             variant='h5'
+                            align='left'
+                            className={classes.title}
                         >
                             {title}
                         </Typography>
                         <Typography
                             variant='p'
+                            paragraph
+                            className={classes.description}
                         >
                             {description}
                         </Typography>
@@ -48,3 +65,37 @@ export default function Todo({todo, onDelete, onToggleEdit}) {
        </Fragment>
     )
 }
+
+/*
+return (
+        <Fragment>
+            <Card>
+                <CardContent>
+                        <Typography
+                            variant='h5'
+                            align='left'
+                            className={classes.title}
+                        >
+                            {title}
+                        </Typography>
+                        <Typography
+                            variant='p'
+                            paragraph
+                            className={classes.description}
+                        >
+                            {description}
+                        </Typography>
+                </CardContent>
+                <CardActions>
+                        <IconButton aria-label='delete' onClick={()=>{onDelete(todo_id)}}>
+                            <Delete/>
+                        </IconButton>
+                        <IconButton aria-label='edit' onClick={()=>onToggleEdit(todo_id)}>
+                            <CreateIcon/>
+                        </IconButton>
+                </CardActions>
+            </Card>
+       </Fragment>
+    )
+
+*/

@@ -1,5 +1,5 @@
-import React,{useState, useEffect, Fragment} from 'react';
-import {makeStyles} from '@material-ui/core';
+import React, { useState, useEffect, Fragment } from 'react';
+import { makeStyles } from '@material-ui/core';
 // Material-Ui Components
 import Container from '@material-ui/core/Container';
 import List from '@material-ui/core/List';
@@ -15,66 +15,66 @@ import AddTask from './AddTask';
 import EditModal from './EditModal';
 // Styles
 const useStyles = makeStyles({
-    container:{
-        width:'80vw',
+    container: {
+        width: '80vw'
     }
 });
-export default function Todos({user_id}) {
+export default function Todos({ user_id }) {
     const [todos, setTodos] = useState([]);
-    const [editTodo,setEditTodo]=useState(null);
+    const [editTodo, setEditTodo] = useState(null);
     const classes = useStyles();
-    useEffect(()=>{
-        if(user_id){
-            (async()=>{
+    useEffect(() => {
+        if (user_id) {
+            (async () => {
                 const response = await fetch(`/get-todos?user_id=${user_id}`);
                 const data = await response.json();
                 setTodos(data);
             })();
         }
-    },[]);
-    const eraseTodo = async(id)=>{
-        const response = await fetch(`/remove-todo?todo_id=${id}`,{
-            method:'DELETE'
+    }, []);
+    const eraseTodo = async (id) => {
+        const response = await fetch(`/remove-todo?todo_id=${id}`, {
+            method: 'DELETE'
         });
         const data = await response.json();
         return data;
     };
-    const changeToDo = async(todo)=>{
-        const {todo_id} = todo;
-        const response = await fetch(`/change-todo?todo_id=${todo_id}`,{
-            method:'PUT',
-            headers:{"Content-Type":"application/json"},
-            body:JSON.stringify(todo)
+    const changeToDo = async (todo) => {
+        const { todo_id } = todo;
+        const response = await fetch(`/change-todo?todo_id=${todo_id}`, {
+            method: 'PUT',
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(todo)
         });
         const data = await response.json();
         return data;
     };
-    const onDelete = (id)=>{
-        const filteredTodos = todos.filter(todo=>todo.todo_id!==id);
+    const onDelete = (id) => {
+        const filteredTodos = todos.filter(todo => todo.todo_id !== id);
         setTodos(filteredTodos);
         eraseTodo(id);
     };
-    const onToggleEdit = (id)=>{
-        const filteredTodo = todos.filter(todo=>todo.todo_id===id)[0];
+    const onToggleEdit = (id) => {
+        const filteredTodo = todos.filter(todo => todo.todo_id === id)[0];
         setEditTodo(filteredTodo);
     };
-    const undoEdit = ()=>{
+    const undoEdit = () => {
         setEditTodo(null);
     };
-    const overwriteTodo = (overwrittenTodo)=>{
-        const updatedTodos = todos.map(todo=>(todo.todo_id===overwrittenTodo.todo_id)?todo=overwrittenTodo:todo);
+    const overwriteTodo = (overwrittenTodo) => {
+        const updatedTodos = todos.map(todo => (todo.todo_id === overwrittenTodo.todo_id) ? todo = overwrittenTodo : todo);
         setTodos(updatedTodos);
         setEditTodo(null);
         changeToDo(overwrittenTodo);
     };
-    const addTaskToDb = async(user_id, todo)=>{
-        const response = await fetch(`/add-todo?user_id=${user_id}`,{
-            method:'POST',
-            headers:{"Content-Type":"application/json"},
-            body:JSON.stringify(todo)
+    const addTaskToDb = async (user_id, todo) => {
+        const response = await fetch(`/add-todo?user_id=${user_id}`, {
+            method: 'POST',
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(todo)
         });
         const data = await response.json();
-        const updatedTodos = [...todos,data];
+        const updatedTodos = [...todos, data];
         setTodos(updatedTodos);
     }
 
@@ -82,23 +82,23 @@ export default function Todos({user_id}) {
         <Fragment>
             <Container className={classes.container}>
                 <List>
-                    <AddTask addTaskToDb={addTaskToDb} user_id={user_id}/>
+                    <AddTask addTaskToDb={addTaskToDb} user_id={user_id} />
                     {
-                        (todos.length>0)
-                        ?
-                        todos.map(todo=>{
-                            const {todo_id, title, description} = todo;
-                            return(
-                                <Todo key={todo_id} todo={todo} onDelete={onDelete} onToggleEdit={onToggleEdit}></Todo>
-                            );
-                        })
-                        :
-                        <Typography>You have no tasks!</Typography>
+                        (todos.length > 0)
+                            ?
+                            todos.map(todo => {
+                                const { todo_id, title, description } = todo;
+                                return (
+                                    <Todo key={todo_id} todo={todo} onDelete={onDelete} onToggleEdit={onToggleEdit}></Todo>
+                                );
+                            })
+                            :
+                            <Typography>You have no tasks!</Typography>
                     }
                 </List>
             </Container>
             {
-                (!(!editTodo))?<EditModal todo={editTodo} onUndo={undoEdit} onOverwrite={overwriteTodo}/>:<Fragment/>
+                (!(!editTodo)) ? <EditModal todo={editTodo} onUndo={undoEdit} onOverwrite={overwriteTodo} /> : <Fragment />
             }
         </Fragment>
     )
