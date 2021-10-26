@@ -52,6 +52,5 @@ export default function Todo({todo, onDelete, onToggleEdit}) {
             </ListItem>
             <Divider className={classes.divider}/>
         </Fragment>
-     
     )
 }

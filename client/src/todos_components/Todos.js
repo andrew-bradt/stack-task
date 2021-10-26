@@ -17,6 +17,9 @@ import EditModal from './EditModal';
 const useStyles = makeStyles({
     container: {
         width: '80vw'
+    },
+    yourTasks:{
+        textDecoration:'underline'
     }
 });
 export default function Todos({ user_id }) {
@@ -79,10 +82,16 @@ export default function Todos({ user_id }) {
     }
 
     return (
-        <Fragment>
+        <Container>
             <Container className={classes.container}>
+                <AddTask addTaskToDb={addTaskToDb} user_id={user_id} />
+                <Typography
+                    variant='h5'
+                    align='left'
+                    className={classes.yourTasks}
+                >Your Tasks</Typography>
                 <List>
-                    <AddTask addTaskToDb={addTaskToDb} user_id={user_id} />
+                    
                     {
                         (todos.length > 0)
                             ?
@@ -100,6 +109,6 @@ export default function Todos({ user_id }) {
             {
                 (!(!editTodo)) ? <EditModal todo={editTodo} onUndo={undoEdit} onOverwrite={overwriteTodo} /> : <Fragment />
             }
-        </Fragment>
+        </Container>
     )
 }
