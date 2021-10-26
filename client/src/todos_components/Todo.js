@@ -1,5 +1,3 @@
-// --
-
 // Modules - Misc
 import React,{useState, Fragment} from 'react';
 import {makeStyles} from '@material-ui/core';
@@ -10,9 +8,14 @@ import CardContent from '@material-ui/core/CardContent';
 import CardActions from '@material-ui/core/CardActions';
 import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
-import Modal from '@material-ui/core/Modal';
-import TextField from '@material-ui/core/TextField';
 import Container from '@material-ui/core/Container';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemText from '@material-ui/core/ListItemText';
+import ListItemIcon from '@material-ui/core/ListItemIcon';
+import ButtonGroup from '@material-ui/core/ButtonGroup';
+import Button from '@material-ui/core/Button';
+import Grid from '@material-ui/core/Grid';
+import Divider from '@material-ui/core/Divider';
 // MUI - Icons
 import Delete from '@material-ui/icons/Delete';
 import CreateIcon from '@material-ui/icons/Create';
@@ -20,13 +23,17 @@ import ClearIcon from '@material-ui/icons/Clear';
 import SaveIcon from '@material-ui/icons/Save';
 // Custom Components
 const useStyles = makeStyles({
-    title:{
-        textDecoration:'underline',
-        marginBottom:20
+   listItem:{
+       display:'flex',
+       alignItems:'flex-start',
+       justifyContent:'flex-start'
     },
-    description:{
-        marginRight:20,
-        textAlign:'left'
+    buttonGroup:{
+       marginTop:5
+    },
+    divider:{
+        width:'98%',
+        marginLeft:'1%'
     }
 });
 export default function Todo({todo, onDelete, onToggleEdit}) {
@@ -36,66 +43,15 @@ export default function Todo({todo, onDelete, onToggleEdit}) {
     const [editDescription, setEditDescription] = useState(description);
     return (
         <Fragment>
-            <Card>
-                <CardContent>
-                        <Typography
-                            variant='h5'
-                            align='left'
-                            className={classes.title}
-                        >
-                            {title}
-                        </Typography>
-                        <Typography
-                            variant='p'
-                            paragraph
-                            className={classes.description}
-                        >
-                            {description}
-                        </Typography>
-                </CardContent>
-                <CardActions>
-                        <IconButton aria-label='delete' onClick={()=>{onDelete(todo_id)}}>
-                            <Delete/>
-                        </IconButton>
-                        <IconButton aria-label='edit' onClick={()=>onToggleEdit(todo_id)}>
-                            <CreateIcon/>
-                        </IconButton>
-                </CardActions>
-            </Card>
-       </Fragment>
+            <ListItem className={classes.listItem}>
+                <ListItemText primary={title} secondary={description}/>
+                <ButtonGroup className={classes.buttonGroup} variant='outlined' size='small'>
+                    <Button onClick={()=>onToggleEdit(todo_id)}endIcon={<CreateIcon/>}>Edit</Button>
+                    <Button onClick={()=>onDelete(todo_id)}endIcon={<Delete/>}>Delete</Button>
+                </ButtonGroup>
+            </ListItem>
+            <Divider className={classes.divider}/>
+        </Fragment>
+     
     )
 }
-
-/*
-return (
-        <Fragment>
-            <Card>
-                <CardContent>
-                        <Typography
-                            variant='h5'
-                            align='left'
-                            className={classes.title}
-                        >
-                            {title}
-                        </Typography>
-                        <Typography
-                            variant='p'
-                            paragraph
-                            className={classes.description}
-                        >
-                            {description}
-                        </Typography>
-                </CardContent>
-                <CardActions>
-                        <IconButton aria-label='delete' onClick={()=>{onDelete(todo_id)}}>
-                            <Delete/>
-                        </IconButton>
-                        <IconButton aria-label='edit' onClick={()=>onToggleEdit(todo_id)}>
-                            <CreateIcon/>
-                        </IconButton>
-                </CardActions>
-            </Card>
-       </Fragment>
-    )
-
-*/
