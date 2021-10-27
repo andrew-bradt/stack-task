@@ -46,8 +46,8 @@ export default function Todo({todo, onDelete, onToggleEdit}) {
             <ListItem className={classes.listItem}>
                 <ListItemText primary={title} secondary={description}/>
                 <ButtonGroup className={classes.buttonGroup} variant='outlined' size='small'>
-                    <Button onClick={()=>onToggleEdit(todo_id)}endIcon={<CreateIcon/>}>Edit</Button>
-                    <Button onClick={()=>onDelete(todo_id)}endIcon={<Delete/>}>Delete</Button>
+                    <Button onClick={()=>onToggleEdit(todo_id)}startIcon={<CreateIcon/>}>Edit</Button>
+                    <Button onClick={()=>onDelete(todo_id)}startIcon={<Delete/>}>Delete</Button>
                 </ButtonGroup>
             </ListItem>
             <Divider className={classes.divider}/>

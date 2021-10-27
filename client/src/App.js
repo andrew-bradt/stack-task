@@ -1,18 +1,14 @@
 import './App.css';
 import {useState,useEffect} from 'react';
-import {createMuiTheme, responsiveFontSizes} from '@material-ui/core/styles';
+import {createTheme, responsiveFontSizes} from '@material-ui/core/styles';
 // MUI Styling
-
+import theme from './ui/Theme';
 // Custom Components
 import {ThemeProvider} from '@material-ui/styles';
 import Login from './account_components/Login';
 import SignUp from './account_components/SignUp';
 import Todos from './todos_components/Todos';
 import Layout from './containers/Layout';
-
-let theme = createMuiTheme({
-});
-theme=responsiveFontSizes(theme);
 
 function App() {
   // Hooks

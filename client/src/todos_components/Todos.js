@@ -14,14 +14,18 @@ import Todo from './Todo';
 import AddTask from './AddTask';
 import EditModal from './EditModal';
 // Styles
-const useStyles = makeStyles({
+const useStyles = makeStyles(theme=>({
     container: {
         width: '80vw'
     },
-    yourTasks:{
-        textDecoration:'underline'
+    header:{
+        ...theme.typography.header
+    },
+    divider:{
+        width:'98%',
+        marginLeft:'1%'
     }
-});
+}));
 export default function Todos({ user_id }) {
     const [todos, setTodos] = useState([]);
     const [editTodo, setEditTodo] = useState(null);
@@ -84,14 +88,13 @@ export default function Todos({ user_id }) {
     return (
         <Container>
             <Container className={classes.container}>
-                <AddTask addTaskToDb={addTaskToDb} user_id={user_id} />
+                <AddTask className={classes.addTask} addTaskToDb={addTaskToDb} user_id={user_id}/>
                 <Typography
                     variant='h5'
                     align='left'
-                    className={classes.yourTasks}
+                    className={classes.header}
                 >Your Tasks</Typography>
                 <List>
-                    
                     {
                         (todos.length > 0)
                             ?
