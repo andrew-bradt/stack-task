@@ -8,13 +8,15 @@ import ToolBar from '@material-ui/core/Toolbar'
 import Typography from '@material-ui/core/Typography';
 
 const useStyles = makeStyles((theme)=>({
+    // root:{
+    //     minHeight:'100vh',
+    //     display:'flex', 
+    //     flexDirection:'row',
+    //     display:'flex',
+    //     justifyContent:'center',
+    //     alignItems:'center'
+    // },
     root:{
-        minHeight:'100vh',
-        display:'flex', 
-        flexDirection:'row',
-        display:'flex',
-        justifyContent:'center',
-        alignItems:'center'
     },
     title:{
         flexGrow:1,
@@ -22,6 +24,10 @@ const useStyles = makeStyles((theme)=>({
     },
     signOut:{
         cursor:'pointer'
+    },
+    toolbarMargin:{
+        ...theme.mixins.toolbar,
+        marginTop:50
     }
 }));
 
@@ -42,8 +48,9 @@ export default function Layout({children,user_id, onUserId}) {
                         {(user_id)?'Sign Out':''}
                     </Typography>
                 </ToolBar>
-                            </AppBar>
+            </AppBar>
             {/* Children */}
+            <div className={classes.toolbarMargin}/>
             <div className={classes.root}>{children}</div>
         </Container>
     )

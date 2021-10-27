@@ -30,6 +30,12 @@ const useStyles = makeStyles({
     },
     error:{
         marginTop:-10,
+    },
+    container:{
+        display:'flex',
+        justifyContent:'center',
+        alignItems:'center',
+        height:'80vh',
     }
 });
 
@@ -93,7 +99,7 @@ export default function SignUp({onUserId, toLogin}) {
     }
     // Rendering
     return (
-        <Container size='sm'>
+        <Container size='sm' className={classes.container}>
             <Paper
                 className={classes.paper}
                 elevation={3}

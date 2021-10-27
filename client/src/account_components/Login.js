@@ -25,6 +25,12 @@ const useStyles = makeStyles({
     },
     btnshort: {
         width: '30%'
+    },
+    container:{
+        display:'flex',
+        justifyContent:'center',
+        alignItems:'center',
+        height:'80vh',
     }
 });
 export default function Login({ onUserId, toSignUp }) {
@@ -66,9 +72,8 @@ export default function Login({ onUserId, toSignUp }) {
             onUserId(data.user_id);
         }
     }
-    // Rendering
     return (
-        <Container size='sm'>
+        <Container size='sm' className={classes.container}>
             <Paper
                 className={classes.paper}
                 elevation={3}
