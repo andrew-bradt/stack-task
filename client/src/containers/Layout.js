@@ -8,14 +8,6 @@ import ToolBar from '@material-ui/core/Toolbar'
 import Typography from '@material-ui/core/Typography';
 
 const useStyles = makeStyles((theme)=>({
-    // root:{
-    //     minHeight:'100vh',
-    //     display:'flex', 
-    //     flexDirection:'row',
-    //     display:'flex',
-    //     justifyContent:'center',
-    //     alignItems:'center'
-    // },
     root:{
     },
     title:{
