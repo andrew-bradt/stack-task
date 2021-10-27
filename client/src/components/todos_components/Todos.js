@@ -10,9 +10,9 @@ import Typography from '@material-ui/core/Typography';
 // Material-Ui Icons
 import DeleteIcon from '@material-ui/icons/Delete';
 // Custom Components
-import Todo from './Todo';
-import AddTask from './AddTask';
-import EditModal from './EditModal';
+import Todo from '../todos_components/Todo';
+import AddTask from '../todos_components/AddTask';
+import EditModal from '../todos_components/EditModal';
 // Styles
 const useStyles = makeStyles(theme=>({
     container: {

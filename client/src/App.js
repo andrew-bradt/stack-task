@@ -2,13 +2,13 @@ import './App.css';
 import {useState,useEffect} from 'react';
 import {createTheme, responsiveFontSizes} from '@material-ui/core/styles';
 // MUI Styling
-import theme from './ui/Theme';
-// Custom Components
+import theme from './components/ui/Theme';
 import {ThemeProvider} from '@material-ui/styles';
-import Login from './account_components/Login';
-import SignUp from './account_components/SignUp';
-import Todos from './todos_components/Todos';
-import Layout from './containers/Layout';
+// Custom Components
+import Login from './components/account_components/Login';
+import SignUp from './components/account_components/SignUp';
+import Todos from './components/todos_components/Todos';
+import Layout from './components/containers/Layout';
 
 function App() {
   // Hooks
