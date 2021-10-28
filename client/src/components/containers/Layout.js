@@ -63,7 +63,7 @@ const useStyles = makeStyles((theme)=>({
     },
 }));
 
-export default function Layout({children,user_id, onUserId}) {
+export default function Layout({children,user_id, onUserId, onSearchChange}) {
     const classes = useStyles();
     return (
         <Container className={classes.root}>
@@ -87,6 +87,7 @@ export default function Layout({children,user_id, onUserId}) {
                                     input: classes.inputInput,
                                 }}
                                 inputProps={{ 'aria-label': 'search' }}
+                                onChange={onSearchChange}
                             />
                         </div>
                         :

@@ -14,11 +14,16 @@ function App() {
   // Hooks
   const [user_id,setUserId] = useState(null);
   const [mountComponent, setMountComponent] = useState('login');
+  const [searchText, setSearchText] = useState('');
   // Handlers
   const onUserId = (id)=>{
     setUserId(id);
     (id)?setMountComponent('todos'):setMountComponent('login');
   };
+  const onSearchChange = (e)=>{
+    const {value} = e.target;
+    setSearchText(value);
+  }
   const swapComponents = (page)=>{
     switch(page){
       case 'login':
@@ -26,13 +31,13 @@ function App() {
       case 'sign-up':
         return <SignUp onUserId={onUserId} toLogin={setMountComponent}/>;
       case 'todos':
-        return <Todos user_id={user_id}/>;
+        return <Todos user_id={user_id} searchText={searchText}/>;
     }
   }
   return (
     <div className="App">
       <ThemeProvider theme={theme}>
-        <Layout user_id={user_id} onUserId={onUserId} onSignOut={setMountComponent}>
+        <Layout user_id={user_id} onUserId={onUserId} onSignOut={setMountComponent} onSearchChange={onSearchChange}>
           {swapComponents(mountComponent)}
         </Layout>
       </ThemeProvider>

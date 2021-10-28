@@ -27,7 +27,7 @@ const useStyles = makeStyles(theme=>({
         marginLeft:'1%'
     },
 }));
-export default function Todos({ user_id }) {
+export default function Todos({ user_id, searchText }) {
     const [todos, setTodos] = useState([]);
     const [editTodo, setEditTodo] = useState(null);
     const classes = useStyles();
