@@ -84,7 +84,6 @@ export default function Todos({ user_id }) {
         const updatedTodos = [...todos, data];
         setTodos(updatedTodos);
     }
-
     return (
         <Container>
             <Container className={classes.container}>

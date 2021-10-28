@@ -8,10 +8,12 @@ import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
 import TextField from '@material-ui/core/TextField';
 import IconButton from '@material-ui/core/IconButton';
+import ButtonGroup from '@material-ui/core/ButtonGroup';
+import Button from '@material-ui/core/Button';
 // MUI Icons
 import Delete from '@material-ui/icons/Delete';
 import SaveIcon from '@material-ui/icons/Save';
-const useStyles = makeStyles({
+const useStyles = makeStyles(theme=>({
     modalWrapper:{
         width:'100vw',
         height:'100vh',
@@ -20,33 +22,47 @@ const useStyles = makeStyles({
         alignItems:'center'
     },
     modalCard:{
-        width:'100%',
+        width:'80%',
         margin:20
     },
     field: {
+        
+    },
+    input:{
+        marginBottom:20,
+        marginRight:'auto'
+    },
+    header:{
+        ...theme.typography.header
     }
-});
+}));
 export default function EditModal({todo, onUndo, onOverwrite}) {
     const [todoToEdit, setTodoToEdit] = useState({
         todo_id:todo.todo_id,
         title:todo.title,
         description:todo.description
-    })
+    });
     const classes = useStyles();
     const onInput = (e)=>{
         const {id, value}=e.target;
         const changedTodo = {...todoToEdit,[id]:value};
         setTodoToEdit(changedTodo);
-    }   
+    }
        return (
         <Modal open={!(!todo)}>
             <Container className={classes.modalWrapper}>
                 <Card className={classes.modalCard}>
                     <CardContent>
-                        <Typography>Edit Note</Typography>
+                        <Typography 
+                            variant='h5'
+                            className={classes.header}
+                        >
+                            Edit Note</Typography>
                         <form noValidate autoComplete='off'>
                             <TextField
+                                className={classes.input}
                                 label='Title'
+                                variant='outlined'
                                 id='title'
                                 value={todoToEdit.title}
                                 onChange={onInput}
@@ -56,7 +72,9 @@ export default function EditModal({todo, onUndo, onOverwrite}) {
                                 Task
                             </TextField>
                             <TextField
+                                className={classes.input}
                                 label='Description'
+                                variant='outlined'
                                 id='description'
                                 value={todoToEdit.description}
                                 onChange={onInput}
@@ -64,12 +82,10 @@ export default function EditModal({todo, onUndo, onOverwrite}) {
                             >
                                 Description
                             </TextField>
-                            <IconButton onClick={()=>onUndo()}>
-                                <Delete/>
-                            </IconButton>
-                            <IconButton onClick={()=>onOverwrite(todoToEdit)}>
-                                <SaveIcon/>
-                            </IconButton>
+                            <ButtonGroup className={classes.buttonGroup} variant='outlined' size='small'>
+                                <Button className={classes.button} onClick={()=>onUndo()}startIcon={<Delete/>}>Undo</Button>
+                                <Button className={classes.button} color='error' onClick={()=>onOverwrite(todoToEdit)}startIcon={<SaveIcon/>}>Save</Button>
+                            </ButtonGroup>
                         </form>
                     </CardContent>
                 </Card>
