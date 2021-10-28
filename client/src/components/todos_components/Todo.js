@@ -31,6 +31,9 @@ const useStyles = makeStyles({
     buttonGroup:{
        marginTop:5
     },
+    button:{
+        minWidth:'92px',
+    },
     divider:{
         width:'98%',
         marginLeft:'1%'
@@ -46,8 +49,8 @@ export default function Todo({todo, onDelete, onToggleEdit}) {
             <ListItem className={classes.listItem}>
                 <ListItemText primary={title} secondary={description}/>
                 <ButtonGroup className={classes.buttonGroup} variant='outlined' size='small'>
-                    <Button onClick={()=>onToggleEdit(todo_id)}startIcon={<CreateIcon/>}>Edit</Button>
-                    <Button onClick={()=>onDelete(todo_id)}startIcon={<Delete/>}>Delete</Button>
+                    <Button className={classes.button} onClick={()=>onToggleEdit(todo_id)}startIcon={<CreateIcon/>}>Edit</Button>
+                    <Button className={classes.button} color='error' onClick={()=>onDelete(todo_id)}startIcon={<Delete/>}>Delete</Button>
                 </ButtonGroup>
             </ListItem>
             <Divider className={classes.divider}/>
