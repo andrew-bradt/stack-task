@@ -1,5 +1,5 @@
 import React, { useState, useEffect, Fragment } from 'react';
-import { makeStyles } from '@material-ui/core';
+import {makeStyles } from '@material-ui/core';
 // Material-Ui Components
 import Container from '@material-ui/core/Container';
 import List from '@material-ui/core/List';
@@ -7,6 +7,7 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import ListItemAvatar from '@material-ui/core/ListItemAvatar';
 import Typography from '@material-ui/core/Typography';
+import InputBase from '@material-ui/core/InputBase';
 // Material-Ui Icons
 import DeleteIcon from '@material-ui/icons/Delete';
 // Custom Components
@@ -24,7 +25,7 @@ const useStyles = makeStyles(theme=>({
     divider:{
         width:'98%',
         marginLeft:'1%'
-    }
+    },
 }));
 export default function Todos({ user_id }) {
     const [todos, setTodos] = useState([]);
