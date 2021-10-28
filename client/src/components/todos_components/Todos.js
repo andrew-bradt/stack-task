@@ -29,6 +29,9 @@ const useStyles = makeStyles(theme=>({
 }));
 export default function Todos({ user_id, searchText }) {
     const [todos, setTodos] = useState([]);
+    const filteredTodos = todos.filter(todo=>{
+        return todo.title.toLowerCase().includes(searchText.toLowerCase());
+    });
     const [editTodo, setEditTodo] = useState(null);
     const classes = useStyles();
     useEffect(() => {
@@ -98,7 +101,7 @@ export default function Todos({ user_id, searchText }) {
                     {
                         (todos.length > 0)
                             ?
-                            todos.map(todo => {
+                            filteredTodos.map(todo => {
                                 const { todo_id, title, description } = todo;
                                 return (
                                     <Todo key={todo_id} todo={todo} onDelete={onDelete} onToggleEdit={onToggleEdit}></Todo>
