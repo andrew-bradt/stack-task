@@ -29,9 +29,11 @@ const useStyles = makeStyles(theme=>({
 }));
 export default function Todos({ user_id, searchText }) {
     const [todos, setTodos] = useState([]);
-    const filteredTodos = todos.filter(todo=>{
-        return todo.title.toLowerCase().includes(searchText.toLowerCase());
-    });
+    const displayTodos = (()=>{
+        const filteredTodos = todos.filter(todo=>{
+            return todo.title.toLowerCase().includes(searchText.toLowerCase());
+        });
+    })();
     const [editTodo, setEditTodo] = useState(null);
     const classes = useStyles();
     useEffect(() => {
@@ -43,6 +45,12 @@ export default function Todos({ user_id, searchText }) {
             })();
         }
     }, []);
+    useEffect(()=>{
+        switch(sortType){
+            case 'none':
+                return 
+        }
+    },[sortType]);
     const eraseTodo = async (id) => {
         const response = await fetch(`/remove-todo?todo_id=${id}`, {
             method: 'DELETE'
