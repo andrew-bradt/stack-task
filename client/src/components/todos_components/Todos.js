@@ -101,14 +101,18 @@ export default function Todos({ user_id, searchText }) {
                     {
                         (todos.length > 0)
                             ?
-                            filteredTodos.map(todo => {
-                                const { todo_id, title, description } = todo;
-                                return (
-                                    <Todo key={todo_id} todo={todo} onDelete={onDelete} onToggleEdit={onToggleEdit}></Todo>
-                                );
-                            })
+                            (filteredTodos.length > 0)
+                                ?
+                                filteredTodos.map(todo => {
+                                    const { todo_id, title, description } = todo;
+                                    return (
+                                        <Todo key={todo_id} todo={todo} onDelete={onDelete} onToggleEdit={onToggleEdit}></Todo>
+                                    );
+                                })
+                                :
+                                <Typography align='left'>There are no task titles that match your search criteria.</Typography>
                             :
-                            <Typography>You have no tasks!</Typography>
+                            <Typography align='left'>You have no tasks!</Typography>
                     }
                 </List>
             </Container>
