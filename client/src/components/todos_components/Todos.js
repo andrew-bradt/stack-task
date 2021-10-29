@@ -21,7 +21,7 @@ import EditModal from '../todos_components/EditModal';
 // Styles
 const useStyles = makeStyles(theme=>({
     container: {
-        width: '80vw'
+        width: '80vw',
     },
     header:{
         ...theme.typography.header
@@ -30,6 +30,20 @@ const useStyles = makeStyles(theme=>({
         width:'98%',
         marginLeft:'1%'
     },
+    toggleGroup:{
+    },
+    toggleContainer:{
+        textAlign:'left',
+        marginLeft:-10
+    },
+    toggleButton:{
+        height:26,
+        marginLeft:10
+    },
+    toggleLabel:{
+        display:'inline-block'
+    }
+
 }));
 export default function Todos({ user_id, searchText }) {
     const [todos, setTodos] = useState([]);
@@ -123,14 +137,23 @@ export default function Todos({ user_id, searchText }) {
                 >
                     Your Tasks
                 </Typography>
-                <ToggleButtonGroup 
-                    value={sortMethod} 
-                    onChange={onSortChange}
-                    exclusive
-                >
-                    <ToggleButton value='alphabetical'>A to Z</ToggleButton>
-                    <ToggleButton value='reverse-alphabetical'>Z to A</ToggleButton>
-                </ToggleButtonGroup>
+                <Container className={classes.toggleContainer}>
+                    <Typography
+                        className={classes.toggleLabel}
+                    >
+                        Sort Tasks:
+                    </Typography>
+                    <ToggleButtonGroup 
+                        className={classes.toggleGroup}
+                        value={sortMethod} 
+                        onChange={onSortChange}
+                        exclusive
+                    >
+                        <ToggleButton className={classes.toggleButton} value='alphabetical'>A to Z</ToggleButton>
+                        <ToggleButton className={classes.toggleButton} value='reverse-alphabetical'>Z to A</ToggleButton>
+                    </ToggleButtonGroup>
+                </Container>
+                
                 <List>
                     {
                         (todos.length > 0)
