@@ -21,13 +21,14 @@ const useStyles = makeStyles(theme=>({
         marginLeft: -7,
         width: '80vw',
         textAlign: 'left',
-        marginBottom: 40
+        marginBottom: 40,
+        [theme.breakpoints.down('xs')]:{
+            textAlign:'center'
+        }
     },
     input:{
         marginBottom:20,
         marginRight:'auto'
-    },
-    button:{
     },
     header:{
         ...theme.typography.header
@@ -38,6 +39,12 @@ const useStyles = makeStyles(theme=>({
             textAlign:'center'
         }
     },
+    inputWidthResponsive:{
+        width:'30%',
+        [theme.breakpoints.down('xs')]:{
+            width:'100%'
+        }
+    }
 }));
 const todoDefault = {
     title: '',
@@ -67,19 +74,17 @@ export default function AddTask({ user_id, addTaskToDb }) {
             <Container
                 size="sm"
                 className={classes.container}
+                justifyContent='center'
             >
                 <TextField
                     variant='outlined'
                     label='Title'
                     id='title'
-                    style={{width:'50%'}}
                     value={todo.title}
                     onChange={onInput}
-                    className={classes.input}
+                    className={[classes.input, classes.inputWidthResponsive]}
                     required
-                >
-                    Task
-                </TextField>
+                />
                 <TextField
                     variant='outlined'
                     label='Description'
@@ -91,9 +96,7 @@ export default function AddTask({ user_id, addTaskToDb }) {
                     className={classes.input}
                     onChange={onInput}
                     fullWidth
-                >
-                    Description
-                </TextField>
+                />
                 <Button
                     size="small"
                     startIcon={<AddIcon />}
