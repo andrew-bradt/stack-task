@@ -29,12 +29,29 @@ const useStyles = makeStyles(theme=>({
 }));
 export default function Todos({ user_id, searchText }) {
     const [todos, setTodos] = useState([]);
-    const displayTodos = (()=>{
-        const filteredTodos = todos.filter(todo=>{
-            return todo.title.toLowerCase().includes(searchText.toLowerCase());
-        });
-    })();
+    const [sortMethod, setSortMethod] = useState(null);
     const [editTodo, setEditTodo] = useState(null);
+    const filteredTodos = todos.filter(todo=>{
+        return todo.title.toLowerCase().includes(searchText.toLowerCase());
+    });
+    const sortedTodos = (()=>{
+        switch(sortMethod){
+            case 'alphabetical':
+                return filteredTodos.sort((a,b)=>{
+                    let x = a.title[0].toLowerCase();
+                    let y = b.title[0].toLowerCase();
+                    return (x>y)?1:-1;
+                });
+            case 'reverse-alphabetical':
+                return filteredTodos.sort((a,b)=>{
+                    let x = a.title[0].toLowerCase();
+                    let y = b.title[0].toLowerCase();
+                    return (x<y)?1:-1;
+                })
+            default:
+                return filteredTodos;
+        }
+    })();
     const classes = useStyles();
     useEffect(() => {
         if (user_id) {
@@ -45,12 +62,6 @@ export default function Todos({ user_id, searchText }) {
             })();
         }
     }, []);
-    useEffect(()=>{
-        switch(sortType){
-            case 'none':
-                return 
-        }
-    },[sortType]);
     const eraseTodo = async (id) => {
         const response = await fetch(`/remove-todo?todo_id=${id}`, {
             method: 'DELETE'
@@ -109,9 +120,9 @@ export default function Todos({ user_id, searchText }) {
                     {
                         (todos.length > 0)
                             ?
-                            (filteredTodos.length > 0)
+                            (sortedTodos.length > 0)
                                 ?
-                                filteredTodos.map(todo => {
+                                sortedTodos.map(todo => {
                                     const { todo_id, title, description } = todo;
                                     return (
                                         <Todo key={todo_id} todo={todo} onDelete={onDelete} onToggleEdit={onToggleEdit}></Todo>
