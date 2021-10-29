@@ -2,6 +2,7 @@ import React, { useState, useEffect, Fragment } from 'react';
 import {makeStyles} from '@material-ui/core';
 // Material-Ui Components
 import Container from '@material-ui/core/Container';
+import Divider from '@material-ui/core/Divider';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
@@ -141,9 +142,10 @@ export default function Todos({ user_id, searchText }) {
                     <Typography
                         className={classes.toggleLabel}
                     >
-                        Sort Tasks:
+                        Sort Tasks By Title:
                     </Typography>
                     <ToggleButtonGroup 
+
                         className={classes.toggleGroup}
                         value={sortMethod} 
                         onChange={onSortChange}

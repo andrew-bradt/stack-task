@@ -23,20 +23,23 @@ import ClearIcon from '@material-ui/icons/Clear';
 import SaveIcon from '@material-ui/icons/Save';
 // Custom Components
 const useStyles = makeStyles({
-   listItem:{
-       display:'flex',
-       alignItems:'flex-start',
-       justifyContent:'flex-start'
-    },
-    buttonGroup:{
-       marginTop:5
-    },
-    button:{
-        minWidth:'92px',
-    },
-    divider:{
-        width:'98%',
-        marginLeft:'1%'
+//    listItem:{
+//        display:'flex',
+//        alignItems:'flex-start',
+//        justifyContent:'flex-start'
+//     },
+    // buttonGroup:{
+    //    marginTop:5
+    // },
+    // button:{
+    //     minWidth:'92px',
+    // },
+    // divider:{
+    //     width:'98%',
+    //     marginLeft:'1%'
+    // }
+    listItemText:{
+        wordWrap:'break-word'
     }
 });
 export default function Todo({todo, onDelete, onToggleEdit}) {
@@ -46,14 +49,35 @@ export default function Todo({todo, onDelete, onToggleEdit}) {
     const [editDescription, setEditDescription] = useState(description);
     return (
         <Fragment>
-            <ListItem className={classes.listItem}>
-                <ListItemText primary={title} secondary={description}/>
-                <ButtonGroup className={classes.buttonGroup} variant='outlined' size='small'>
-                    <Button className={classes.button} onClick={()=>onToggleEdit(todo_id)}startIcon={<CreateIcon/>}>Edit</Button>
-                    <Button className={classes.button} color='error' onClick={()=>onDelete(todo_id)}startIcon={<Delete/>}>Delete</Button>
-                </ButtonGroup>
+            <ListItem divider className={classes.listItem}>
+                <Grid 
+                    container
+                    direction='row'
+                    justifyContent='space-between'
+                    alignItems='flex-start'
+                    >
+                    <Grid 
+                        item
+                        xs={12}
+                        sm={5}
+                    >
+                        <ListItemText className={classes.listItemText} primary={title} secondary={description}/>
+                    </Grid>
+                    <Grid 
+                        item
+                        xs={12}
+                        sm={7}
+                        container
+                        justifyContent='flex-end'
+                    >
+                        <ButtonGroup className={classes.buttonGroup} variant='outlined' size='small'>
+                        <Button className={classes.button} onClick={()=>onToggleEdit(todo_id)}startIcon={<CreateIcon/>}>Edit</Button>
+                        <Button className={classes.button} color='error' onClick={()=>onDelete(todo_id)}startIcon={<Delete/>}>Delete</Button>
+                        </ButtonGroup>
+                    </Grid>
+                </Grid>
             </ListItem>
-            <Divider className={classes.divider}/>
+            {/* <Divider className={classes.divider}/> */}
         </Fragment>
     )
 }
