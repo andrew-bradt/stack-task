@@ -31,7 +31,13 @@ const useStyles = makeStyles(theme=>({
     },
     header:{
         ...theme.typography.header
-    }
+    },
+    responsiveAlignText:{
+        textAlign:'left',
+        [theme.breakpoints.down('xs')]:{
+            textAlign:'center'
+        }
+    },
 }));
 const todoDefault = {
     title: '',
@@ -54,7 +60,7 @@ export default function AddTask({ user_id, addTaskToDb }) {
             <Typography
                 variant='h5'
                 align='left'
-                className={classes.header}
+                className={[classes.header,classes.responsiveAlignText]}
             >
                 Add a Task
             </Typography>

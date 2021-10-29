@@ -43,8 +43,13 @@ const useStyles = makeStyles(theme=>({
     },
     toggleLabel:{
         display:'inline-block'
-    }
-
+    },
+    responsiveAlignText:{
+        textAlign:'left',
+        [theme.breakpoints.down('xs')]:{
+            textAlign:'center'
+        }
+    },
 }));
 export default function Todos({ user_id, searchText }) {
     const [todos, setTodos] = useState([]);
@@ -134,7 +139,7 @@ export default function Todos({ user_id, searchText }) {
                 <Typography
                     variant='h5'
                     align='left'
-                    className={classes.header}
+                    className={[classes.header,classes.responsiveAlignText]}
                 >
                     Your Tasks
                 </Typography>
@@ -146,7 +151,6 @@ export default function Todos({ user_id, searchText }) {
                             Sort Tasks By Title:
                         </Typography>
                         <ToggleButtonGroup 
-
                             className={classes.toggleGroup}
                             value={sortMethod} 
                             onChange={onSortChange}

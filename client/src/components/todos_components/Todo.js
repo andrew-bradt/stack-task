@@ -23,21 +23,12 @@ import ClearIcon from '@material-ui/icons/Clear';
 import SaveIcon from '@material-ui/icons/Save';
 // Custom Components
 const useStyles = makeStyles((theme)=>({
-//    listItem:{
-//        display:'flex',
-//        alignItems:'flex-start',
-//        justifyContent:'flex-start'
-//     },
     buttonGroup:{
        marginTop:10
     },
-    // button:{
-    //     minWidth:'92px',
-    // },
-    // divider:{
-    //     width:'98%',
-    //     marginLeft:'1%'
-    // }
+    button:{
+        minWidth:'92px',
+    },
     listItemText:{
         wordWrap:'break-word',
         [theme.breakpoints.down('xs')]:{
@@ -70,7 +61,9 @@ export default function Todo({todo, onDelete, onToggleEdit}) {
                         xs={12}
                         sm={6}
                     >
-                        <ListItemText className={classes.listItemText} primary={title} secondary={description}/>
+                        <ListItemText 
+                            className={classes.listItemText} primary={title} secondary={description}
+                        />
                     </Grid>
                     <Grid 
                         item
@@ -86,7 +79,6 @@ export default function Todo({todo, onDelete, onToggleEdit}) {
                     </Grid>
                 </Grid>
             </ListItem>
-            {/* <Divider className={classes.divider}/> */}
         </Fragment>
     )
 }
