@@ -35,7 +35,9 @@ const useStyles = makeStyles(theme=>({
     },
     toggleContainer:{
         textAlign:'left',
-        marginLeft:-10
+        [theme.breakpoints.down('xs')]:{
+            textAlign:'center'
+        }
     },
     toggleButton:{
         height:26,
