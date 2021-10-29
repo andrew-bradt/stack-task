@@ -1,12 +1,12 @@
-import React,{useState, Fragment} from 'react'
+import React,{Fragment, useState} from 'react'
 import {alpha, makeStyles} from '@material-ui/core';
 // MUI Components
-import Container from '@material-ui/core/Container';
-import Button from '@material-ui/core/Button';
 import AppBar from '@material-ui/core/AppBar';
+import Button from '@material-ui/core/Button';
+import Container from '@material-ui/core/Container';
+import InputBase from '@material-ui/core/InputBase';
 import ToolBar from '@material-ui/core/Toolbar'
 import Typography from '@material-ui/core/Typography';
-import InputBase from '@material-ui/core/InputBase';
 // MUI Icons
 import SearchIcon from '@material-ui/icons/Search';
 //

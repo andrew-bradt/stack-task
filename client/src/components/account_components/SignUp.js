@@ -1,13 +1,12 @@
-import React,{useState,Fragment} from 'react';
-import {useHistory} from 'react-router-dom';
-// Material UI
-import TextField from '@material-ui/core/TextField';
-import Typography from '@material-ui/core/Typography';
+import React,{Fragment, useState} from 'react';
+import {makeStyles} from '@material-ui/core';
+// Material UI Components
 import Button from '@material-ui/core/Button';
 import Container from '@material-ui/core/Container';
-import Paper from '@material-ui/core/Paper';
 import Divider from '@material-ui/core/Divider';
-import {makeStyles} from '@material-ui/core';
+import Paper from '@material-ui/core/Paper';
+import TextField from '@material-ui/core/TextField';
+import Typography from '@material-ui/core/Typography';
 
 const useStyles = makeStyles({
     paper:{
@@ -42,7 +41,6 @@ const useStyles = makeStyles({
 export default function SignUp({onUserId, toLogin}) {
     // State
     const classes = useStyles();
-    const history = useHistory();
     const [userCredentials, setUserCredentials] = useState({
         email:'',
         password:'',
