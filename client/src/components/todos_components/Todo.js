@@ -22,15 +22,15 @@ import CreateIcon from '@material-ui/icons/Create';
 import ClearIcon from '@material-ui/icons/Clear';
 import SaveIcon from '@material-ui/icons/Save';
 // Custom Components
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme)=>({
 //    listItem:{
 //        display:'flex',
 //        alignItems:'flex-start',
 //        justifyContent:'flex-start'
 //     },
-    // buttonGroup:{
-    //    marginTop:5
-    // },
+    buttonGroup:{
+       marginTop:10
+    },
     // button:{
     //     minWidth:'92px',
     // },
@@ -39,9 +39,18 @@ const useStyles = makeStyles({
     //     marginLeft:'1%'
     // }
     listItemText:{
-        wordWrap:'break-word'
+        wordWrap:'break-word',
+        [theme.breakpoints.down('xs')]:{
+            textAlign:'center'
+        }
+    },
+    gridButtonGroup:{
+        justifyContent:'flex-end',
+        [theme.breakpoints.down('xs')]:{
+            justifyContent:'center'
+        }
     }
-});
+}));
 export default function Todo({todo, onDelete, onToggleEdit}) {
     const classes = useStyles();
     const {todo_id, title, description} = todo;
@@ -59,16 +68,16 @@ export default function Todo({todo, onDelete, onToggleEdit}) {
                     <Grid 
                         item
                         xs={12}
-                        sm={5}
+                        sm={6}
                     >
                         <ListItemText className={classes.listItemText} primary={title} secondary={description}/>
                     </Grid>
                     <Grid 
                         item
                         xs={12}
-                        sm={7}
+                        sm={6}
                         container
-                        justifyContent='flex-end'
+                        className={classes.gridButtonGroup}
                     >
                         <ButtonGroup className={classes.buttonGroup} variant='outlined' size='small'>
                         <Button className={classes.button} onClick={()=>onToggleEdit(todo_id)}startIcon={<CreateIcon/>}>Edit</Button>

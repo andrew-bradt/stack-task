@@ -138,25 +138,24 @@ export default function Todos({ user_id, searchText }) {
                 >
                     Your Tasks
                 </Typography>
-                <Container className={classes.toggleContainer}>
-                    <Typography
-                        className={classes.toggleLabel}
-                    >
-                        Sort Tasks By Title:
-                    </Typography>
-                    <ToggleButtonGroup 
+                <List disablePadding>
+                    <Container className={classes.toggleContainer}>
+                        <Typography
+                            className={classes.toggleLabel}
+                        >
+                            Sort Tasks By Title:
+                        </Typography>
+                        <ToggleButtonGroup 
 
-                        className={classes.toggleGroup}
-                        value={sortMethod} 
-                        onChange={onSortChange}
-                        exclusive
-                    >
-                        <ToggleButton className={classes.toggleButton} value='alphabetical'>A to Z</ToggleButton>
-                        <ToggleButton className={classes.toggleButton} value='reverse-alphabetical'>Z to A</ToggleButton>
-                    </ToggleButtonGroup>
-                </Container>
-                
-                <List>
+                            className={classes.toggleGroup}
+                            value={sortMethod} 
+                            onChange={onSortChange}
+                            exclusive
+                        >
+                            <ToggleButton className={classes.toggleButton} value='alphabetical'>A to Z</ToggleButton>
+                            <ToggleButton className={classes.toggleButton} value='reverse-alphabetical'>Z to A</ToggleButton>
+                        </ToggleButtonGroup>
+                    </Container>
                     {
                         (todos.length > 0)
                             ?
