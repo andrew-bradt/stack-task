@@ -1,5 +1,5 @@
 import React, { useState, useEffect, Fragment } from 'react';
-import {makeStyles } from '@material-ui/core';
+import {makeStyles} from '@material-ui/core';
 // Material-Ui Components
 import Container from '@material-ui/core/Container';
 import List from '@material-ui/core/List';
@@ -8,8 +8,12 @@ import ListItemText from '@material-ui/core/ListItemText';
 import ListItemAvatar from '@material-ui/core/ListItemAvatar';
 import Typography from '@material-ui/core/Typography';
 import InputBase from '@material-ui/core/InputBase';
+import ToggleButtonGroup from '@material-ui/lab/ToggleButtonGroup';
+import ToggleButton from '@material-ui/lab/ToggleButton';
 // Material-Ui Icons
 import DeleteIcon from '@material-ui/icons/Delete';
+import SortByAlphaIcon from '@material-ui/icons/SortByAlpha';
+import CloseIcon from '@material-ui/icons/Close';
 // Custom Components
 import Todo from '../todos_components/Todo';
 import AddTask from '../todos_components/AddTask';
@@ -107,6 +111,7 @@ export default function Todos({ user_id, searchText }) {
         const updatedTodos = [...todos, data];
         setTodos(updatedTodos);
     }
+    const onSortChange = (e, newSortMethod)=>setSortMethod(newSortMethod);
     return (
         <Container>
             <Container className={classes.container}>
@@ -115,7 +120,17 @@ export default function Todos({ user_id, searchText }) {
                     variant='h5'
                     align='left'
                     className={classes.header}
-                >Your Tasks</Typography>
+                >
+                    Your Tasks
+                </Typography>
+                <ToggleButtonGroup 
+                    value={sortMethod} 
+                    onChange={onSortChange}
+                    exclusive
+                >
+                    <ToggleButton value='alphabetical'>A to Z</ToggleButton>
+                    <ToggleButton value='reverse-alphabetical'>Z to A</ToggleButton>
+                </ToggleButtonGroup>
                 <List>
                     {
                         (todos.length > 0)
