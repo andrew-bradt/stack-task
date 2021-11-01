@@ -21,7 +21,9 @@ import {
 import {CloseIcon, DeleteIcon, SortByAlphaIcon} from '@material-ui/icons';
 
 // Custom Components
-import {AddTask, EditModal, Todoo} from '../todos_components';
+import AddTask from './AddTask';
+import EditModal from './EditModal';
+import Todo from './Todo';
 
 // Styles
 const useStyles = makeStyles(theme=>({
