@@ -3,7 +3,8 @@ let theme = createTheme({
     typography:{
         header:{
             textDecoration:'underline',
-            marginBottom:'20px'
+            marginBottom:'20px',
+            marginTop:'20px'
         },
     }
 });
