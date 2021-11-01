@@ -16,7 +16,7 @@ import {
 } from '@material-ui/core';
 
 // MUI Icons
-import {AddIcon} from '@material-ui/icons';
+import {Add as AddIcon} from '@material-ui/icons';
 
 // Styles
 const useStyles = makeStyles(theme=>({
