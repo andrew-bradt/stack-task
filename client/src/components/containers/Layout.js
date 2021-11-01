@@ -12,7 +12,7 @@ import {
 } from '@material-ui/core';
 
 // MUI Icons
-import {SearchIcon} from '@material-ui/icons';
+import {Search as SearchIcon} from '@material-ui/icons';
 
 //
 const useStyles = makeStyles((theme)=>({
