@@ -1,10 +1,9 @@
-import React,{Fragment, useState} from 'react'
+import React,{Fragment} from 'react'
 import {alpha, makeStyles} from '@material-ui/core';
 
 // MUI Components
 import {
     AppBar,
-    Button,
     Container,
     InputBase,
     Toolbar,

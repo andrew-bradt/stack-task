@@ -4,21 +4,13 @@ import {makeStyles} from '@material-ui/core';
 // Material-Ui Components
 import {
     Container,
-    Divider,
-    InputBase,
     List,
-    ListItem,
-    ListItemAvatar,
-    ListItemText,
     Typography,
 } from '@material-ui/core';
 import {
     ToggleButton,
     ToggleButtonGroup,
 } from '@material-ui/lab';
-
-// Material-Ui Icons
-import {CloseIcon, DeleteIcon, SortByAlphaIcon} from '@material-ui/icons';
 
 // Custom Components
 import AddTask from './AddTask';
@@ -61,6 +53,7 @@ const useStyles = makeStyles(theme=>({
     },
 }));
 export default function Todos({ user_id, searchText }) {
+    const classes = useStyles();
     const [todos, setTodos] = useState([]);
     const [sortMethod, setSortMethod] = useState(null);
     const [editTodo, setEditTodo] = useState(null);
@@ -85,7 +78,6 @@ export default function Todos({ user_id, searchText }) {
                 return filteredTodos;
         }
     })();
-    const classes = useStyles();
     useEffect(() => {
         if (user_id) {
             (async () => {
@@ -94,7 +86,7 @@ export default function Todos({ user_id, searchText }) {
                 setTodos(data);
             })();
         }
-    }, []);
+    }, [user_id]);
     const eraseTodo = async (id) => {
         const response = await fetch(`/remove-todo?todo_id=${id}`, {
             method: 'DELETE'
@@ -175,7 +167,7 @@ export default function Todos({ user_id, searchText }) {
                             (sortedTodos.length > 0)
                                 ?
                                 sortedTodos.map(todo => {
-                                    const { todo_id, title, description } = todo;
+                                    const { todo_id } = todo;
                                     return (
                                         <Todo key={todo_id} todo={todo} onDelete={onDelete} onToggleEdit={onToggleEdit}></Todo>
                                     );

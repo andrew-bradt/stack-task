@@ -1,6 +1,5 @@
 import './App.css';
-import {useEffect, useState} from 'react';
-import {createTheme, responsiveFontSizes} from '@material-ui/core/styles';
+import {useState} from 'react';
 // MUI Styling
 import theme from './components/ui/Theme';
 import {ThemeProvider} from '@material-ui/styles';
@@ -32,6 +31,8 @@ function App() {
         return <SignUp onUserId={onUserId} toLogin={setMountComponent}/>;
       case 'todos':
         return <Todos user_id={user_id} searchText={searchText}/>;
+      default:
+        return <Login onUserId={onUserId} toSignUp={setMountComponent}/>;
     }
   }
   return (

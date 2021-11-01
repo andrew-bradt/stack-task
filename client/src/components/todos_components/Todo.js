@@ -1,29 +1,18 @@
 // Modules - Misc
-import React,{Fragment, useState} from 'react';
+import React,{Fragment} from 'react';
 import {makeStyles} from '@material-ui/core';
 // MUI - Components
 import {
-    Box,
     Button,
     ButtonGroup,
-    Card,
-    CardActions,
-    CardContent,
-    Container,
-    Divider,
     Grid,
-    IconButton,
     ListItem,
-    ListItemIcon,
     ListItemText,
-    Typography,
 } from '@material-ui/core';
 // MUI - Icons
 import { 
-    Clear as ClearIcon, 
     Create as CreateIcon, 
     Delete, 
-    Save as SaveIcon,
 } from '@material-ui/icons';
 // Custom Components
 const useStyles = makeStyles((theme)=>({
@@ -49,8 +38,8 @@ const useStyles = makeStyles((theme)=>({
 export default function Todo({todo, onDelete, onToggleEdit}) {
     const classes = useStyles();
     const {todo_id, title, description} = todo;
-    const [editTitle, setEditTitle] = useState(title);
-    const [editDescription, setEditDescription] = useState(description);
+    // const [editTitle, setEditTitle] = useState(title);
+    // const [editDescription, setEditDescription] = useState(description);
     return (
         <Fragment>
             <ListItem divider className={classes.listItem}>
