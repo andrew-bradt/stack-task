@@ -1,24 +1,28 @@
 import React, { Fragment, useEffect, useState} from 'react';
 import {makeStyles} from '@material-ui/core';
+
 // Material-Ui Components
-import Container from '@material-ui/core/Container';
-import Divider from '@material-ui/core/Divider';
-import InputBase from '@material-ui/core/InputBase';
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemAvatar from '@material-ui/core/ListItemAvatar';
-import ListItemText from '@material-ui/core/ListItemText';
-import ToggleButton from '@material-ui/lab/ToggleButton';
-import ToggleButtonGroup from '@material-ui/lab/ToggleButtonGroup';
-import Typography from '@material-ui/core/Typography';
+import {
+    Container,
+    Divider,
+    InputBase,
+    List,
+    ListItem,
+    ListItemAvatar,
+    ListItemText,
+    Typography,
+} from '@material-ui/core';
+import {
+    ToggleButton,
+    ToggleButtonGroup,
+} from '@material-ui/lab';
+
 // Material-Ui Icons
-import CloseIcon from '@material-ui/icons/Close';
-import DeleteIcon from '@material-ui/icons/Delete';
-import SortByAlphaIcon from '@material-ui/icons/SortByAlpha';
+import {CloseIcon, DeleteIcon, SortByAlphaIcon} from '@material-ui/icons';
+
 // Custom Components
-import AddTask from '../todos_components/AddTask';
-import EditModal from '../todos_components/EditModal';
-import Todo from '../todos_components/Todo';
+import {AddTask, EditModal, Todoo} from '../todos_components';
+
 // Styles
 const useStyles = makeStyles(theme=>({
     container: {

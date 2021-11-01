@@ -1,14 +1,19 @@
 import React,{Fragment, useState} from 'react'
 import {alpha, makeStyles} from '@material-ui/core';
+
 // MUI Components
-import AppBar from '@material-ui/core/AppBar';
-import Button from '@material-ui/core/Button';
-import Container from '@material-ui/core/Container';
-import InputBase from '@material-ui/core/InputBase';
-import ToolBar from '@material-ui/core/Toolbar'
-import Typography from '@material-ui/core/Typography';
+import {
+    AppBar,
+    Button,
+    Container,
+    InputBase,
+    ToolBar,
+    Typography,
+} from '@material-ui/core';
+
 // MUI Icons
-import SearchIcon from '@material-ui/icons/Search';
+import {SearchIcon} from '@material-ui/icons';
+
 //
 const useStyles = makeStyles((theme)=>({
     inputInput: {
