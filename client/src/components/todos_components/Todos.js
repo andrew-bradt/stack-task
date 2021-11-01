@@ -37,14 +37,13 @@ const useStyles = makeStyles(theme=>({
     },
     toggleContainer:{
         textAlign:'left',
+        padding:16,
         [theme.breakpoints.down('xs')]:{
             textAlign:'center'
         }
     },
-    toggleGroup:{
-    },
     toggleLabel:{
-        display:'inline-block'
+        display:'inline-block',
     },
     responsiveAlignText:{
         textAlign:'left',
@@ -149,11 +148,11 @@ export default function Todos({ user_id, searchText }) {
                     <Container className={classes.toggleContainer}>
                         <Typography
                             className={classes.toggleLabel}
+                            variant='subtitle1'
                         >
                             Sort Tasks By Title:
                         </Typography>
                         <ToggleButtonGroup 
-                            className={classes.toggleGroup}
                             value={sortMethod} 
                             onChange={onSortChange}
                             exclusive
