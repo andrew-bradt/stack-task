@@ -27,7 +27,8 @@ const useStyles = makeStyles(theme=>({
         }
     },
     header:{
-        ...theme.typography.header
+        ...theme.typography.header,
+        marginTop:80
     },
     input:{
         marginBottom:20,
