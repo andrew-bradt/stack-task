@@ -15,7 +15,10 @@ import {
 } from '@material-ui/core';
 
 // MUI Icons
-import {Delete, SaveIcon} from '@material-ui/icons';
+import {
+    Delete, 
+    Save as SaveIcon,
+} from '@material-ui/icons';
 
 // Styles
 const useStyles = makeStyles(theme=>({

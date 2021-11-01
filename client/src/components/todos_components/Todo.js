@@ -20,10 +20,10 @@ import {
 } from '@material-ui/core';
 // MUI - Icons
 import { 
-    ClearIcon, 
-    CreateIcon, 
+    Clear as ClearIcon, 
+    Create as CreateIcon, 
     Delete, 
-    SaveIcon,
+    Save as SaveIcon,
 } from '@material-ui/icons';
 // Custom Components
 const useStyles = makeStyles((theme)=>({
