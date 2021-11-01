@@ -23,22 +23,22 @@ import Delete from '@material-ui/icons/Delete';
 import SaveIcon from '@material-ui/icons/Save';
 // Custom Components
 const useStyles = makeStyles((theme)=>({
-    buttonGroup:{
-       marginTop:10
-    },
     button:{
         minWidth:'92px',
     },
-    listItemText:{
-        wordWrap:'break-word',
-        [theme.breakpoints.down('xs')]:{
-            textAlign:'center'
-        }
+    buttonGroup:{
+       marginTop:10
     },
     gridButtonGroup:{
         justifyContent:'flex-end',
         [theme.breakpoints.down('xs')]:{
             justifyContent:'center'
+        }
+    },
+    listItemText:{
+        wordWrap:'break-word',
+        [theme.breakpoints.down('xs')]:{
+            textAlign:'center'
         }
     }
 }));

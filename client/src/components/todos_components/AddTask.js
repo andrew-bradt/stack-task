@@ -26,12 +26,18 @@ const useStyles = makeStyles(theme=>({
             textAlign:'center'
         }
     },
+    header:{
+        ...theme.typography.header
+    },
     input:{
         marginBottom:20,
         marginRight:'auto'
     },
-    header:{
-        ...theme.typography.header
+    inputWidthResponsive:{
+        width:'30%',
+        [theme.breakpoints.down('xs')]:{
+            width:'100%'
+        }
     },
     responsiveAlignText:{
         textAlign:'left',
@@ -39,12 +45,6 @@ const useStyles = makeStyles(theme=>({
             textAlign:'center'
         }
     },
-    inputWidthResponsive:{
-        width:'30%',
-        [theme.breakpoints.down('xs')]:{
-            width:'100%'
-        }
-    }
 }));
 const todoDefault = {
     title: '',

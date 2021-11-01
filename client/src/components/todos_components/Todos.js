@@ -24,14 +24,16 @@ const useStyles = makeStyles(theme=>({
     container: {
         width: '80vw',
     },
-    header:{
-        ...theme.typography.header
-    },
     divider:{
         width:'98%',
         marginLeft:'1%'
     },
-    toggleGroup:{
+    header:{
+        ...theme.typography.header
+    },
+    toggleButton:{
+        height:26,
+        marginLeft:10
     },
     toggleContainer:{
         textAlign:'left',
@@ -39,9 +41,7 @@ const useStyles = makeStyles(theme=>({
             textAlign:'center'
         }
     },
-    toggleButton:{
-        height:26,
-        marginLeft:10
+    toggleGroup:{
     },
     toggleLabel:{
         display:'inline-block'

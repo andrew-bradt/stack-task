@@ -11,18 +11,20 @@ import Typography from '@material-ui/core/Typography';
 import SearchIcon from '@material-ui/icons/Search';
 //
 const useStyles = makeStyles((theme)=>({
+    inputInput: {
+        padding: theme.spacing(1, 1, 1, 0),
+        // vertical padding + font size from searchIcon
+        paddingLeft: `calc(1em + ${theme.spacing(4)}px)`,
+        transition: theme.transitions.create('width'),
+        width: '100%',
+        [theme.breakpoints.up('md')]: {
+            width: '20ch',
+        },
+    },
+    inputRoot: {
+        color: 'inherit',
+    },
     root:{
-    },
-    title:{
-        flexGrow:1,
-        textAlign:'left'
-    },
-    signOut:{
-        cursor:'pointer'
-    },
-    toolbarMargin:{
-        ...theme.mixins.toolbar,
-        marginTop:50
     },
     search: {
         position: 'relative',
@@ -48,18 +50,16 @@ const useStyles = makeStyles((theme)=>({
         alignItems: 'center',
         justifyContent: 'center',
     },
-    inputRoot: {
-        color: 'inherit',
-      },
-    inputInput: {
-    padding: theme.spacing(1, 1, 1, 0),
-    // vertical padding + font size from searchIcon
-    paddingLeft: `calc(1em + ${theme.spacing(4)}px)`,
-    transition: theme.transitions.create('width'),
-    width: '100%',
-    [theme.breakpoints.up('md')]: {
-        width: '20ch',
+    signOut:{
+        cursor:'pointer'
     },
+    title:{
+        flexGrow:1,
+        textAlign:'left'
+    },
+    toolbarMargin:{
+        ...theme.mixins.toolbar,
+        marginTop:50
     },
 }));
 

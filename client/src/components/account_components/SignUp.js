@@ -9,14 +9,6 @@ import TextField from '@material-ui/core/TextField';
 import Typography from '@material-ui/core/Typography';
 
 const useStyles = makeStyles({
-    paper:{
-        width:'360px',
-        padding:20
-    },
-    field:{
-        marginBottom:20,
-        display:'block'
-    },
     btn:{
         display:'block',
         marginBottom:20
@@ -27,15 +19,23 @@ const useStyles = makeStyles({
     btnshort:{
         width:'30%'
     },
-    error:{
-        marginTop:-10,
-    },
     container:{
         display:'flex',
         justifyContent:'center',
         alignItems:'center',
         height:'80vh',
-    }
+    },
+    error:{
+        marginTop:-10,
+    },
+    field:{
+        marginBottom:20,
+        display:'block'
+    },
+    paper:{
+        width:'360px',
+        padding:20
+    },
 });
 
 export default function SignUp({onUserId, toLogin}) {

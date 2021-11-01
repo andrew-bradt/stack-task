@@ -8,14 +8,6 @@ import Paper from '@material-ui/core/Paper';
 import TextField from '@material-ui/core/TextField';
 //
 const useStyles = makeStyles({
-    paper: {
-        width: '360px',
-        padding: 20
-    },
-    field: {
-        marginBottom: 20,
-        display: 'block'
-    },
     btn: {
         display: 'block',
         marginBottom: 20
@@ -31,7 +23,15 @@ const useStyles = makeStyles({
         justifyContent:'center',
         alignItems:'center',
         height:'80vh',
-    }
+    },
+    field: {
+        marginBottom: 20,
+        display: 'block'
+    },
+    paper: {
+        width: '360px',
+        padding: 20
+    },
 });
 export default function Login({ onUserId, toSignUp }) {
     // State

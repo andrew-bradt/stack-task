@@ -14,6 +14,20 @@ import Typography from '@material-ui/core/Typography';
 import Delete from '@material-ui/icons/Delete';
 import SaveIcon from '@material-ui/icons/Save';
 const useStyles = makeStyles(theme=>({
+    field: {
+        
+    },
+    header:{
+        ...theme.typography.header
+    },
+    input:{
+        marginBottom:20,
+        marginRight:'auto'
+    },
+    modalCard:{
+        width:'80%',
+        margin:20
+    },
     modalWrapper:{
         width:'100vw',
         height:'100vh',
@@ -21,20 +35,6 @@ const useStyles = makeStyles(theme=>({
         justifyContent:'center',
         alignItems:'center'
     },
-    modalCard:{
-        width:'80%',
-        margin:20
-    },
-    field: {
-        
-    },
-    input:{
-        marginBottom:20,
-        marginRight:'auto'
-    },
-    header:{
-        ...theme.typography.header
-    }
 }));
 export default function EditModal({todo, onUndo, onOverwrite}) {
     const [todoToEdit, setTodoToEdit] = useState({
