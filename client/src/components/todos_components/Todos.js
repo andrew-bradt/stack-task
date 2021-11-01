@@ -38,6 +38,8 @@ const useStyles = makeStyles(theme=>({
     toggleContainer:{
         textAlign:'left',
         padding:16,
+        paddingTop:0,
+        paddingBottom:10,
         [theme.breakpoints.down('xs')]:{
             textAlign:'center'
         }
