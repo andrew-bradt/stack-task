@@ -7,7 +7,7 @@ import {
     Button,
     Container,
     InputBase,
-    ToolBar,
+    Toolbar,
     Typography,
 } from '@material-ui/core';
 
@@ -62,8 +62,8 @@ const useStyles = makeStyles((theme)=>({
         flexGrow:1,
         textAlign:'left'
     },
-    toolbarMargin:{
-        ...theme.mixins.toolbar,
+    ToolbarMargin:{
+        ...theme.mixins.Toolbar,
         marginTop:50
     },
 }));
@@ -74,7 +74,7 @@ export default function Layout({children,user_id, onUserId, onSearchChange}) {
         <Container className={classes.root}>
             {/* App Bar */}
             <AppBar>
-                <ToolBar>
+                <Toolbar>
                     <Typography className={classes.title} variant='h5'>
                         Todo App
                     </Typography>
@@ -104,10 +104,10 @@ export default function Layout({children,user_id, onUserId, onSearchChange}) {
                     >
                         {(user_id)?'Sign Out':''}
                     </Typography>
-                </ToolBar>
+                </Toolbar>
             </AppBar>
             {/* Children */}
-            <div className={classes.toolbarMargin}/>
+            <div className={classes.ToolbarMargin}/>
             <div className={classes.root}>{children}</div>
         </Container>
     )
