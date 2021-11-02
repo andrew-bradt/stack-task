@@ -1,4 +1,7 @@
 // Dependencies
+const {DATABASE_URL} = process.env;
+console.log(DATABASE_URL);
+//
 require('dotenv').config();
 const express = require('express');
 const path = require('path');
