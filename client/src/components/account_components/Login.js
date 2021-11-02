@@ -1,7 +1,5 @@
 import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core';
-
-// Material UI Components
 import {
     Button,
     Container,
@@ -9,7 +7,7 @@ import {
     Paper,
     TextField,
 } from '@material-ui/core';
-
+const {REACT_APP_BASE_URL} = process.env;
 // Styles
 const useStyles = makeStyles({
     btn: {
@@ -65,7 +63,7 @@ export default function Login({ onUserId, toSignUp }) {
             }
             return;
         }
-        const res = await fetch('/login', {
+        const res = await fetch(`${REACT_APP_BASE_URL}/login`, {
             method: 'POST',
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ email, password })

@@ -7,6 +7,7 @@ import {
     List,
     Typography,
 } from '@material-ui/core';
+
 import {
     ToggleButton,
     ToggleButtonGroup,
@@ -16,6 +17,8 @@ import {
 import AddTask from './AddTask';
 import EditModal from './EditModal';
 import Todo from './Todo';
+
+const {REACT_APP_BASE_URL} = process.env;
 
 // Styles
 const useStyles = makeStyles(theme=>({
@@ -81,14 +84,14 @@ export default function Todos({ user_id, searchText }) {
     useEffect(() => {
         if (user_id) {
             (async () => {
-                const response = await fetch(`/get-todos?user_id=${user_id}`);
+                const response = await fetch(`${REACT_APP_BASE_URL}/get-todos?user_id=${user_id}`);
                 const data = await response.json();
                 setTodos(data);
             })();
         }
     }, [user_id]);
     const eraseTodo = async (id) => {
-        const response = await fetch(`/remove-todo?todo_id=${id}`, {
+        const response = await fetch(`${REACT_APP_BASE_URL}/remove-todo?todo_id=${id}`, {
             method: 'DELETE'
         });
         const data = await response.json();
@@ -96,7 +99,7 @@ export default function Todos({ user_id, searchText }) {
     };
     const changeToDo = async (todo) => {
         const { todo_id } = todo;
-        const response = await fetch(`/change-todo?todo_id=${todo_id}`, {
+        const response = await fetch(`${REACT_APP_BASE_URL}/change-todo?todo_id=${todo_id}`, {
             method: 'PUT',
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(todo)
@@ -123,7 +126,7 @@ export default function Todos({ user_id, searchText }) {
         changeToDo(overwrittenTodo);
     };
     const addTaskToDb = async (user_id, todo) => {
-        const response = await fetch(`/add-todo?user_id=${user_id}`, {
+        const response = await fetch(`${REACT_APP_BASE_URL}/add-todo?user_id=${user_id}`, {
             method: 'POST',
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(todo)

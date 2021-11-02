@@ -1,6 +1,5 @@
 import React, {Fragment, useState} from 'react';
 import {makeStyles} from '@material-ui/core';
-
 // Material UI Components
 import {
     Button,
@@ -10,6 +9,7 @@ import {
     TextField,
     Typography,
 } from '@material-ui/core';
+const {REACT_APP_BASE_URL} = process.env;
 
 // Styles
 const useStyles = makeStyles({
@@ -87,7 +87,7 @@ export default function SignUp({onUserId, toLogin}) {
         if(emailError || passwordError || passwordsDontMatch){
             return;
         };
-        const res = await fetch('/create-user',{
+        const res = await fetch(`${REACT_APP_BASE_URL}/create-user`,{
             method:'POST',
             headers:{"Content-Type":"application/json"},
             body: JSON.stringify({email, password})
