@@ -12,12 +12,12 @@ const pool = (()=>{
         port: DB_PORT,
       });
     case 'production':
-      return new Client({
+      return new Pool({
         connectionString: DATABASE_URL,
         ssl: {
           rejectUnauthorized: false
         }
-      }).connect();
+      });
     default:
       return;
     };
