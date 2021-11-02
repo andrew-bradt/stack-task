@@ -1,5 +1,5 @@
 const { Pool, Client } = require('pg');
-const { ENVIRONMENT, HOST, USER, PASSWORD, DATABASE, DB_PORT } = process.env;
+const { DATABASE_URL, ENVIRONMENT, HOST, USER, PASSWORD, DATABASE, DB_PORT } = process.env;
 
 const pool = (()=>{
   switch(ENVIRONMENT){
@@ -13,7 +13,7 @@ const pool = (()=>{
       });
     case 'production':
       return new Client({
-        connectionString: process.env.DATABASE_URL,
+        connectionString: DATABASE_URL,
         ssl: {
           rejectUnauthorized: false
         }
