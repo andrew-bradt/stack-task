@@ -39,7 +39,7 @@ const useStyles = makeStyles((theme)=>({
         },
         marginRight: theme.spacing(2),
         marginLeft: 0,
-        width: '60%',
+        width: '50%',
         [theme.breakpoints.up('sm')]: {
           marginLeft: theme.spacing(3),
           width:'auto'
@@ -55,11 +55,16 @@ const useStyles = makeStyles((theme)=>({
         justifyContent: 'center',
     },
     signOut:{
-        cursor:'pointer'
+        cursor:'pointer',
+        marginLeft:-3,
+        [theme.breakpoints.up('sm')]:{
+            marginLeft:0
+        }
     },
     title:{
         flexGrow:1,
-        textAlign:'left'
+        textAlign:'left',
+        
     },
     ToolbarMargin:{
         ...theme.mixins.Toolbar,
