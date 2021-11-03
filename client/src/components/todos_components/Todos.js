@@ -116,6 +116,7 @@ export default function Todos({ user_id, searchText }) {
         const filteredTodo = todos.filter(todo => todo.todo_id === id)[0];
         setEditTodo(filteredTodo);
     };
+
     const undoEdit = () => {
         setEditTodo(null);
     };
@@ -183,7 +184,7 @@ export default function Todos({ user_id, searchText }) {
                 </List>
             </Container>
             {
-                (!(!editTodo)) ? <EditModal todo={editTodo} onUndo={undoEdit} onOverwrite={overwriteTodo} /> : <Fragment />
+                (!(!editTodo)) ? <EditModal todo={editTodo} onUndo={undoEdit} onOverwrite={overwriteTodo}/> : <Fragment />
             }
         </Container>
     )

@@ -32,16 +32,20 @@ const useStyles = makeStyles(theme=>({
         marginRight:'auto'
     },
     modalCard:{
-        width:'80%',
-        margin:20
+        width:'40%',
+        height:'auto',
+        padding:10,
+        position:'absolute',
+        left:'30vw',
+        top:'30vh'
     },
-    modalWrapper:{
-        width:'100vw',
-        height:'100vh',
-        display:'flex',
-        justifyContent:'center',
-        alignItems:'center'
-    },
+    // modalWrapper:{
+    //     width:'100vw',
+    //     height:'100vh',
+    //     display:'flex',
+    //     justifyContent:'center',
+    //     alignItems:'center'
+    // },
 }));
 export default function EditModal({todo, onUndo, onOverwrite}) {
     const [todoToEdit, setTodoToEdit] = useState({
@@ -56,8 +60,9 @@ export default function EditModal({todo, onUndo, onOverwrite}) {
         setTodoToEdit(changedTodo);
     }
        return (
-        <Modal open={!(!todo)}>
-            <Container className={classes.modalWrapper}>
+        <Modal 
+            open={!(!todo)} 
+            >
                 <Card className={classes.modalCard}>
                     <CardContent>
                         <Typography 
@@ -97,7 +102,6 @@ export default function EditModal({todo, onUndo, onOverwrite}) {
                         </form>
                     </CardContent>
                 </Card>
-            </Container>
         </Modal>
     )
 }
