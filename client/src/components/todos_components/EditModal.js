@@ -37,15 +37,8 @@ const useStyles = makeStyles(theme=>({
         padding:10,
         position:'absolute',
         left:'30vw',
-        top:'30vh'
+        top:'32vh',
     },
-    // modalWrapper:{
-    //     width:'100vw',
-    //     height:'100vh',
-    //     display:'flex',
-    //     justifyContent:'center',
-    //     alignItems:'center'
-    // },
 }));
 export default function EditModal({todo, onUndo, onOverwrite}) {
     const [todoToEdit, setTodoToEdit] = useState({
