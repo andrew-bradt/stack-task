@@ -5,10 +5,11 @@ const router = express.Router();
 
 router.post('/', async (req, res) => {
     const { email, password } = req.body;
+    const lowercaseEmail = email.toLowerCase();
     try {
         const userRes = await pool.query(
             'SELECT user_id, hash FROM users WHERE email=$1',
-            [email]
+            [lowercaseEmail]
         );
         const { hash, user_id } = userRes.rows[0];
         const doesPasswordMatch = bcrypt.compareSync(password, hash);
