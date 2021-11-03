@@ -75,6 +75,7 @@ export default function EditModal({todo, onUndo, onOverwrite}) {
                                 onChange={onInput}
                                 required
                                 fullWidth
+                                autoFocus
                             >
                                 Task
                             </TextField>

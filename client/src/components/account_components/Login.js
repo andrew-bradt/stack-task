@@ -80,7 +80,7 @@ export default function Login({ onUserId, toSignUp }) {
                 elevation={3}
             >
                 <form>
-                    <TextField className={classes.field} required id='email' variant='outlined' label='Email' fullWidth onChange={onChange} error={emailError}></TextField>
+                    <TextField  className={classes.field} required id='email' variant='outlined' label='Email' fullWidth autoFocus onChange={onChange} error={emailError}></TextField>
                     <TextField className={classes.field} required type='password' id='password' variant='outlined' label='Password' fullWidth onChange={onChange} error={passwordError}></TextField>
                     <Button className={[classes.btn, classes.btnlong]} type='submit' color='primary' variant='contained' onClick={(e) => onSubmit(e)}>Log In</Button>
                 </form>
