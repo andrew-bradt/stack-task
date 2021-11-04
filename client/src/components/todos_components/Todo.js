@@ -61,7 +61,7 @@ export default function Todo({todo, onDelete, onToggleEdit}) {
                         <ListItemText 
                             className={classes.listItemText} 
                             primary={title} 
-                            secondary={description}
+                            secondary={(description)?description:'\u00A0'}
                         />
                     </Grid>
                     <Grid 
