@@ -8,7 +8,7 @@ This is a data persistent CRUD application that was developed with React, Expres
 
 The deployed application can be viewed [here](https://andrew-bradt-todo-frontend.herokuapp.com/).
 
-## **_NOTE: This application was deployed with a free-tier of Heroku, so there is a possibility the servers may be in an idle state and result in longer load times when you first navigate to the application._**
+#### **_NOTE: This application was deployed with a free-tier of Heroku, so there is a possibility the servers may be in an idle state and result in longer load times when you first navigate to the application._**
 
 ## Client Documentation
 
