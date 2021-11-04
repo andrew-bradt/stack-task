@@ -47,7 +47,10 @@ const useStyles = makeStyles(theme=>({
         }
     },
     addTaskButtonContainer:{
-        textAlign:'left'
+        textAlign:'center',
+        [theme.breakpoints.up('sm')]:{
+            textAlign:'left'
+        }
     }
 }));
 const todoDefault = {
