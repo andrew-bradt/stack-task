@@ -72,18 +72,19 @@ export default function AddTask({ user_id, addTaskToDb }) {
             >
                 Add a Task
             </Typography>
-            <Container
+            {/* <Container
                 size="sm"
                 className={classes.container}
                 justifyContent='center'
-            >
+            > */}
                 <TextField
                     variant='outlined'
                     label='Title'
                     id='title'
                     value={todo.title}
+                    fullWidth
                     onChange={onInput}
-                    className={[classes.input, classes.inputWidthResponsive]}
+                    className={classes.input}
                     required
                 />
                 <TextField
@@ -107,7 +108,7 @@ export default function AddTask({ user_id, addTaskToDb }) {
                 >
                     Add Task
                 </Button>
-            </Container>
+            {/* </Container> */}
         </form>
     )
 }

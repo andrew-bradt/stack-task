@@ -1,5 +1,5 @@
-import React,{Fragment} from 'react'
-import {alpha, makeStyles} from '@material-ui/core';
+import React, { Fragment } from 'react'
+import { alpha, makeStyles } from '@material-ui/core';
 
 // MUI Components
 import {
@@ -11,10 +11,10 @@ import {
 } from '@material-ui/core';
 
 // MUI Icons
-import {Search as SearchIcon} from '@material-ui/icons';
+import { Search as SearchIcon } from '@material-ui/icons';
 
 //
-const useStyles = makeStyles((theme)=>({
+const useStyles = makeStyles((theme) => ({
     inputInput: {
         padding: theme.spacing(1, 1, 1, 0),
         // vertical padding + font size from searchIcon
@@ -28,21 +28,21 @@ const useStyles = makeStyles((theme)=>({
     inputRoot: {
         color: 'inherit',
     },
-    root:{
+    root: {
     },
     search: {
         position: 'relative',
         borderRadius: theme.shape.borderRadius,
         backgroundColor: alpha(theme.palette.common.white, 0.15),
         '&:hover': {
-          backgroundColor: alpha(theme.palette.common.white, 0.25),
+            backgroundColor: alpha(theme.palette.common.white, 0.25),
         },
         marginRight: theme.spacing(2),
         marginLeft: 0,
         width: '50%',
         [theme.breakpoints.up('sm')]: {
-          marginLeft: theme.spacing(3),
-          width:'auto'
+            marginLeft: theme.spacing(3),
+            width: 'auto'
         },
     },
     searchIcon: {
@@ -54,25 +54,25 @@ const useStyles = makeStyles((theme)=>({
         alignItems: 'center',
         justifyContent: 'center',
     },
-    signOut:{
-        cursor:'pointer',
-        marginLeft:-3,
-        [theme.breakpoints.up('sm')]:{
-            marginLeft:0
+    signOut: {
+        cursor: 'pointer',
+        marginLeft: -3,
+        [theme.breakpoints.up('sm')]: {
+            marginLeft: 0
         }
     },
-    title:{
-        flexGrow:1,
-        textAlign:'left',
-        
+    title: {
+        flexGrow: 1,
+        textAlign: 'left',
+
     },
-    ToolbarMargin:{
+    ToolbarMargin: {
         ...theme.mixins.Toolbar,
-        marginTop:50
+        marginTop: 50
     },
 }));
 
-export default function Layout({children,user_id, onUserId, onSearchChange}) {
+export default function Layout({ children, user_id, onUserId, onSearchChange }) {
     const classes = useStyles();
     return (
         <Container className={classes.root}>
@@ -84,34 +84,34 @@ export default function Layout({children,user_id, onUserId, onSearchChange}) {
                     </Typography>
                     {
                         (user_id)
-                        ?   
-                        <div className={classes.search}>
-                            <div className={classes.searchIcon}>
-                            <   SearchIcon />
+                            ?
+                            <div className={classes.search}>
+                                <div className={classes.searchIcon}>
+                                    <   SearchIcon />
+                                </div>
+                                <InputBase
+                                    placeholder="Search…"
+                                    classes={{
+                                        root: classes.inputRoot,
+                                        input: classes.inputInput,
+                                    }}
+                                    inputProps={{ 'aria-label': 'search' }}
+                                    onChange={onSearchChange}
+                                />
                             </div>
-                            <InputBase
-                                placeholder="Search…"
-                                classes={{
-                                    root: classes.inputRoot,
-                                    input: classes.inputInput,
-                                }}
-                                inputProps={{ 'aria-label': 'search' }}
-                                onChange={onSearchChange}
-                            />
-                        </div>
-                        :
-                        <Fragment/>
+                            :
+                            <Fragment />
                     }
                     <Typography
-                        onClick={()=>onUserId(null)}
+                        onClick={() => onUserId(null)}
                         className={classes.signOut}
                     >
-                        {(user_id)?'Sign Out':''}
+                        {(user_id) ? 'Sign Out' : ''}
                     </Typography>
                 </Toolbar>
             </AppBar>
             {/* Children */}
-            <div className={classes.ToolbarMargin}/>
+            <div className={classes.ToolbarMargin} />
             <div className={classes.root}>{children}</div>
         </Container>
     )
