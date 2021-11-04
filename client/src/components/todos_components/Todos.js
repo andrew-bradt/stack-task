@@ -1,9 +1,10 @@
-import React, { Fragment, useEffect, useState} from 'react';
-import {makeStyles} from '@material-ui/core';
+import React, { Fragment, useEffect, useState } from 'react';
+import { makeStyles } from '@material-ui/core';
 
 // Material-Ui Components
 import {
     Container,
+    Divider,
     List,
     Typography,
 } from '@material-ui/core';
@@ -18,37 +19,37 @@ import AddTask from './AddTask';
 import EditModal from './EditModal';
 import Todo from './Todo';
 
-const {REACT_APP_BASE_URL} = process.env;
+const { REACT_APP_BASE_URL } = process.env;
 
 // Styles
-const useStyles = makeStyles(theme=>({
+const useStyles = makeStyles(theme => ({
     container: {
         width: '80vw',
     },
-    divider:{
-        width:'98%',
-        marginLeft:'1%'
+    divider: {
+        width: '98%',
+        marginLeft: '1%'
     },
-    header:{
+    header: {
         ...theme.typography.header
     },
-    toggleButton:{
-        height:26,
-        marginLeft:10
+    toggleButton: {
+        height: 26,
+        marginLeft: 10
     },
-    toggleContainer:{
-        textAlign:'center',
-        [theme.breakpoints.up('sm')]:{
-            textAlign:'left'
+    toggleContainer: {
+        textAlign: 'center',
+        [theme.breakpoints.up('sm')]: {
+            textAlign: 'left'
         }
     },
-    toggleLabel:{
-        display:'inline-block',
+    toggleLabel: {
+        display: 'inline-block',
     },
-    responsiveAlignText:{
-        textAlign:'left',
-        [theme.breakpoints.down('xs')]:{
-            textAlign:'center'
+    responsiveAlignText: {
+        textAlign: 'left',
+        [theme.breakpoints.down('xs')]: {
+            textAlign: 'center'
         }
     },
 }));
@@ -57,22 +58,22 @@ export default function Todos({ user_id, searchText }) {
     const [todos, setTodos] = useState([]);
     const [sortMethod, setSortMethod] = useState(null);
     const [editTodo, setEditTodo] = useState(null);
-    const filteredTodos = todos.filter(todo=>{
+    const filteredTodos = todos.filter(todo => {
         return todo.title.toLowerCase().includes(searchText.toLowerCase());
     });
-    const sortedTodos = (()=>{
-        switch(sortMethod){
+    const sortedTodos = (() => {
+        switch (sortMethod) {
             case 'alphabetical':
-                return filteredTodos.sort((a,b)=>{
+                return filteredTodos.sort((a, b) => {
                     let x = a.title[0].toLowerCase();
                     let y = b.title[0].toLowerCase();
-                    return (x>y)?1:-1;
+                    return (x > y) ? 1 : -1;
                 });
             case 'reverse-alphabetical':
-                return filteredTodos.sort((a,b)=>{
+                return filteredTodos.sort((a, b) => {
                     let x = a.title[0].toLowerCase();
                     let y = b.title[0].toLowerCase();
-                    return (x<y)?1:-1;
+                    return (x < y) ? 1 : -1;
                 })
             default:
                 return filteredTodos;
@@ -132,24 +133,24 @@ export default function Todos({ user_id, searchText }) {
         const updatedTodos = [...todos, data];
         setTodos(updatedTodos);
     }
-    const onSortChange = (e, newSortMethod)=>setSortMethod(newSortMethod);
+    const onSortChange = (e, newSortMethod) => setSortMethod(newSortMethod);
     return (
         <Container>
-            <Container 
+            <Container
                 className={classes.container}
             >
-                <AddTask className={classes.addTask} addTaskToDb={addTaskToDb} user_id={user_id}/>
+                <AddTask className={classes.addTask} addTaskToDb={addTaskToDb} user_id={user_id} />
                 <Typography
                     variant='h5'
                     align='left'
-                    className={[classes.header,classes.responsiveAlignText]}
+                    className={[classes.header, classes.responsiveAlignText]}
                 >
                     Your Tasks
                 </Typography>
-                <List 
+                <List
                     disablePadding
                 >
-                    <Container 
+                    <Container
                         disableGutters
                         className={classes.toggleContainer}
                     >
@@ -159,19 +160,19 @@ export default function Todos({ user_id, searchText }) {
                         >
                             Sort Tasks By Title:
                         </Typography>
-                        <ToggleButtonGroup 
-                            value={sortMethod} 
+                        <ToggleButtonGroup
+                            value={sortMethod}
                             onChange={onSortChange}
                             exclusive
                         >
-                            <ToggleButton 
-                                className={classes.toggleButton} 
+                            <ToggleButton
+                                className={classes.toggleButton}
                                 value='alphabetical'
                             >
                                 A to Z
                             </ToggleButton>
-                            <ToggleButton 
-                                className={classes.toggleButton} 
+                            <ToggleButton
+                                className={classes.toggleButton}
                                 value='reverse-alphabetical'
                             >
                                 Z to A
@@ -197,7 +198,7 @@ export default function Todos({ user_id, searchText }) {
                 </List>
             </Container>
             {
-                (!(!editTodo)) ? <EditModal todo={editTodo} onUndo={undoEdit} onOverwrite={overwriteTodo}/> : <Fragment />
+                (!(!editTodo)) ? <EditModal todo={editTodo} onUndo={undoEdit} onOverwrite={overwriteTodo} /> : <Fragment />
             }
         </Container>
     )

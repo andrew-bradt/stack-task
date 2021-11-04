@@ -5,6 +5,7 @@ import { makeStyles } from '@material-ui/core';
 import {
     Button,
     Container,
+    Divider,
     TextField,
     Typography
 } from '@material-ui/core';
@@ -17,15 +18,6 @@ const useStyles = makeStyles(theme=>({
     addTask: {
         marginBottom: 40
     },
-    // container: {
-    //     marginLeft: -7,
-    //     width: '80vw',
-    //     textAlign: 'left',
-    //     marginBottom: 40,
-    //     [theme.breakpoints.down('xs')]:{
-    //         textAlign:'center'
-    //     }
-    // },
     header:{
         ...theme.typography.header,
         marginTop:80
@@ -51,7 +43,7 @@ const useStyles = makeStyles(theme=>({
         [theme.breakpoints.up('sm')]:{
             textAlign:'left'
         }
-    }
+    },
 }));
 const todoDefault = {
     title: '',
@@ -78,11 +70,6 @@ export default function AddTask({ user_id, addTaskToDb }) {
             >
                 Add a Task
             </Typography>
-            {/* <Container
-                size="sm"
-                className={classes.container}
-                justifyContent='center'
-            > */}
                 <TextField
                     variant='outlined'
                     label='Title'
@@ -118,7 +105,6 @@ export default function AddTask({ user_id, addTaskToDb }) {
                         Add Task
                     </Button>
                 </Container>
-            {/* </Container> */}
         </form>
     )
 }

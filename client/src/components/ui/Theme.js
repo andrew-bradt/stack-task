@@ -6,7 +6,7 @@ let theme = createTheme({
             marginBottom:'20px',
             marginTop:'20px'
         },
-    }
+    },
 });
 theme=responsiveFontSizes(theme);
 export default theme;
