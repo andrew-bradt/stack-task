@@ -149,7 +149,9 @@ export default function Todos({ user_id, searchText }) {
                     Your Tasks
                 </Typography>
                 <List disablePadding>
-                    <Container className={classes.toggleContainer}>
+                    <Container 
+                        className={classes.toggleContainer}
+                    >
                         <Typography
                             className={classes.toggleLabel}
                             variant='subtitle1'

@@ -42,7 +42,11 @@ export default function Todo({todo, onDelete, onToggleEdit}) {
     // const [editDescription, setEditDescription] = useState(description);
     return (
         <Fragment>
-            <ListItem divider className={classes.listItem}>
+            <ListItem 
+                divider 
+                className={classes.listItem}
+                disableGutters
+            >
                 <Grid 
                     container
                     direction='row'
@@ -55,7 +59,9 @@ export default function Todo({todo, onDelete, onToggleEdit}) {
                         sm={6}
                     >
                         <ListItemText 
-                            className={classes.listItemText} primary={title} secondary={description}
+                            className={classes.listItemText} 
+                            primary={title} 
+                            secondary={description}
                         />
                     </Grid>
                     <Grid 
