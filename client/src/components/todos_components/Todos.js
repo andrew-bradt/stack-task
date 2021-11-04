@@ -37,12 +37,9 @@ const useStyles = makeStyles(theme=>({
         marginLeft:10
     },
     toggleContainer:{
-        textAlign:'left',
-        padding:16,
-        paddingTop:0,
-        paddingBottom:10,
-        [theme.breakpoints.down('xs')]:{
-            textAlign:'center'
+        textAlign:'center',
+        [theme.breakpoints.up('sm')]:{
+            textAlign:'left'
         }
     },
     toggleLabel:{
@@ -116,7 +113,6 @@ export default function Todos({ user_id, searchText }) {
         const filteredTodo = todos.filter(todo => todo.todo_id === id)[0];
         setEditTodo(filteredTodo);
     };
-
     const undoEdit = () => {
         setEditTodo(null);
     };
@@ -139,7 +135,9 @@ export default function Todos({ user_id, searchText }) {
     const onSortChange = (e, newSortMethod)=>setSortMethod(newSortMethod);
     return (
         <Container>
-            <Container className={classes.container}>
+            <Container 
+                className={classes.container}
+            >
                 <AddTask className={classes.addTask} addTaskToDb={addTaskToDb} user_id={user_id}/>
                 <Typography
                     variant='h5'
@@ -148,8 +146,11 @@ export default function Todos({ user_id, searchText }) {
                 >
                     Your Tasks
                 </Typography>
-                <List disablePadding>
+                <List 
+                    disablePadding
+                >
                     <Container 
+                        disableGutters
                         className={classes.toggleContainer}
                     >
                         <Typography
@@ -163,8 +164,18 @@ export default function Todos({ user_id, searchText }) {
                             onChange={onSortChange}
                             exclusive
                         >
-                            <ToggleButton className={classes.toggleButton} value='alphabetical'>A to Z</ToggleButton>
-                            <ToggleButton className={classes.toggleButton} value='reverse-alphabetical'>Z to A</ToggleButton>
+                            <ToggleButton 
+                                className={classes.toggleButton} 
+                                value='alphabetical'
+                            >
+                                A to Z
+                            </ToggleButton>
+                            <ToggleButton 
+                                className={classes.toggleButton} 
+                                value='reverse-alphabetical'
+                            >
+                                Z to A
+                            </ToggleButton>
                         </ToggleButtonGroup>
                     </Container>
                     {
