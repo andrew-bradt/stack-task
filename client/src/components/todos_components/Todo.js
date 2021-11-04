@@ -33,7 +33,7 @@ const useStyles = makeStyles((theme)=>({
         [theme.breakpoints.down('xs')]:{
             textAlign:'center'
         }
-    }
+    },
 }));
 export default function Todo({todo, onDelete, onToggleEdit}) {
     const classes = useStyles();
@@ -61,7 +61,9 @@ export default function Todo({todo, onDelete, onToggleEdit}) {
                         <ListItemText 
                             className={classes.listItemText} 
                             primary={title} 
-                            secondary={(description)?description:'\u00A0'}
+                            secondary={
+                                (description) ? description : (window.innerWidth >= 600) ? '\u00A0' : description // If a Todo doesn't have a description, add whitespace for devices larger than sm. 
+                            }
                         />
                     </Grid>
                     <Grid 
