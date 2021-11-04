@@ -17,15 +17,15 @@ const useStyles = makeStyles(theme=>({
     addTask: {
         marginBottom: 40
     },
-    container: {
-        marginLeft: -7,
-        width: '80vw',
-        textAlign: 'left',
-        marginBottom: 40,
-        [theme.breakpoints.down('xs')]:{
-            textAlign:'center'
-        }
-    },
+    // container: {
+    //     marginLeft: -7,
+    //     width: '80vw',
+    //     textAlign: 'left',
+    //     marginBottom: 40,
+    //     [theme.breakpoints.down('xs')]:{
+    //         textAlign:'center'
+    //     }
+    // },
     header:{
         ...theme.typography.header,
         marginTop:80
@@ -46,6 +46,9 @@ const useStyles = makeStyles(theme=>({
             textAlign:'center'
         }
     },
+    addTaskButtonContainer:{
+        textAlign:'left'
+    }
 }));
 const todoDefault = {
     title: '',
@@ -99,15 +102,19 @@ export default function AddTask({ user_id, addTaskToDb }) {
                     onChange={onInput}
                     fullWidth
                 />
-                <Button
-                    size="small"
-                    startIcon={<AddIcon />}
-                    variant='outlined'
-                    onClick={() => onSubmit(todo)}
-                    className={classes.button}
+                <Container
+                    disableGutters
+                    className={classes.addTaskButtonContainer}
                 >
-                    Add Task
-                </Button>
+                    <Button
+                        size="small"
+                        startIcon={<AddIcon />}
+                        variant='outlined'
+                        onClick={() => onSubmit(todo)}
+                    >
+                        Add Task
+                    </Button>
+                </Container>
             {/* </Container> */}
         </form>
     )
