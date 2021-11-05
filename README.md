@@ -41,6 +41,8 @@ This is a data persistent CRUD application that was developed with React, Expres
 
 #### Layout
 
+- This component is rendered in the **_App_** component and contains the navigation bar and also wraps the **_Todos_** and **_Add Task_** components.
+
 ---
 
 #### Add Task
@@ -60,6 +62,11 @@ This is a data persistent CRUD application that was developed with React, Expres
 
 ## <img src='./documentation_assets/todos.jpg'>
 
+- Tasks are listed chronologically by default, but can arranged in alphabetical or reverse-alphabetical order.
+- Tasks can also be filtered by title using the search field in the navigation bar.
+- Clicking the **_EDIT_** button will open the **_Edit Modal_** component populated with the corresponding task data.
+- Clicking the **_DELETE_** button will permanently delete the task.
+
 ---
 
 ## Server Documentation
@@ -71,6 +78,10 @@ This is a data persistent CRUD application that was developed with React, Expres
 ---
 
 #### /add-todo
+
+- Accepts **_user_id_** as a query parameter.
+- Inserts a new row into the **_todos_** table, with the **_title, description,_** and **_user_id_** data.
+- Returns the **_todo_id_**, **_title_**, and **_description_** data.
 
 ---
 
