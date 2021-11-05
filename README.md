@@ -115,6 +115,11 @@ This is a data persistent CRUD application that was developed with React, Expres
 
 #### /login
 
+- Responds to a POST request
+- Utilizes **_email_** and **_password_** from the request body.
+- Retrieves a row from the **_users_** table if the provided **_email_** matches any of the records
+- Compares the provided password with the retrieved **_hash_**. If they match, the server responds with the **_email_** and **_user_id_** from the database.
+
 ---
 
 #### /remove-todo
