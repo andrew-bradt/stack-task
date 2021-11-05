@@ -6,7 +6,9 @@ This is a data persistent CRUD application that was developed with React, Expres
 
 ## Table of Contents
 
-#### **[Instructions for Viewing](#instructions-for-viewing)**</br>
+### **[Instructions for Viewing](#instructions-for-viewing)**</br>
+
+### **[Client Documentation](#client-documentation)**</br>
 
 ## Instructions for Viewing
 
@@ -83,7 +85,9 @@ This is a data persistent CRUD application that was developed with React, Expres
 
 #### /add-todo
 
+- Responds to a POST request
 - Accepts **_user_id_** as a query parameter.
+- Accepts **_title_** and **_description_** from the request body.
 - Inserts a new row into the **_todos_** table, with the **_title, description,_** and **_user_id_** data.
 - Returns the **_todo_id_**, **_title_**, and **_description_** data.
 
@@ -91,11 +95,19 @@ This is a data persistent CRUD application that was developed with React, Expres
 
 #### /change-todo
 
+- Responds to a PUT request
+- Accepts **_todo_id_** as a query parameter.
+- Utilizes **_title_** and **_description_** from the request body.
+- Overwrites the existing **_title_** and **_description_** in the row containing the provided **_todo_id_**.
+- Returns the **_todo_id_**, **_title_**, and **_description_** data.
+
 ---
 
 #### /create-user
 
----
+- Responds to a POST request
+- Utilizes **_email_** and **_password_** from the request body.
+- If there are no rows in the **_users_** containing the provided **_email_** in the database, a new one will be added with a **_user_id_**, **_email_**, and **_hash_** generated from the password provided in the request.
 
 #### /get-todos
 
