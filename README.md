@@ -4,13 +4,13 @@ This is a data persistent CRUD application that was developed with React, Expres
 
 ## Table of Contents
 
-#### **[\.Instructions for Viewing](#instructions-for-viewing)**</br>
+#### **[1. Instructions for Viewing](#instructions-for-viewing)**</br>
 
-#### **[\.Client Documentation](#client-documentation)**</br>
+#### **[2. Client Documentation](#client-documentation)**</br>
 
-#### **[\.Server Documentation](#server-documentation)**</br>
+#### **[3. Server Documentation](#server-documentation)**</br>
 
-#### **[\.Database Documentation](#database-documentation)**</br>
+#### **[4. Database Documentation](#database-documentation)**</br>
 
 ## Instructions for Viewing
 
