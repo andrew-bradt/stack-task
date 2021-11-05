@@ -130,6 +130,11 @@ This is a data persistent CRUD application that was developed with React, Expres
 
 #### /remove-todo
 
+- Responds to a DELETE request
+- Accepts **_todo_id_** as a query parameter.
+- Deletes the row with the corresponding **_todo_id_** in the **_todos_** table.
+- Returns the **_todo_id_**, **_title_**, and **_description_** data.
+
 ---
 
 ## Database Documentation
