@@ -109,7 +109,13 @@ This is a data persistent CRUD application that was developed with React, Expres
 - Utilizes **_email_** and **_password_** from the request body.
 - If there are no rows in the **_users_** containing the provided **_email_** in the database, a new one will be added with a **_user_id_**, **_email_**, and **_hash_** generated from the password provided in the request.
 
+---
+
 #### /get-todos
+
+-- Responds to a GET request.
+-- Accepts **_user_id_** as a query parameter.
+-- Returns the **_todo_id_**, **_title_**, and **_description_** from every row in the **_todos_** table with a matching **_user_id_**.
 
 ---
 
