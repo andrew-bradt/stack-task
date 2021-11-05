@@ -147,9 +147,15 @@ This is a data persistent CRUD application that was developed with React, Expres
 
 #### Users
 
----
+| user_id                     | email                        | hash                  |
+| --------------------------- | ---------------------------- | --------------------- |
+| SERIAL PRIMARY KEY NOT NULL | VARCHAR(255) UNIQUE NOT NULL | VARCHAR(255) NOT NULL |
 
 #### Todos
+
+| todo_id                     | title                        | description           | user_id                  |
+| --------------------------- | ---------------------------- | --------------------- | ------------------------ |
+| SERIAL PRIMARY KEY NOT NULL | VARCHAR(255) UNIQUE NOT NULL | VARCHAR(255) NOT NULL | INT FOREIGN KEY NOT NULL |
 
 ---
 
