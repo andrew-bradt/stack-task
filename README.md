@@ -4,9 +4,13 @@ This is a data persistent CRUD application that was developed with React, Expres
 
 ## Table of Contents
 
-### **[Instructions for Viewing](#instructions-for-viewing)**</br>
+#### **[Instructions for Viewing](#instructions-for-viewing)**</br>
 
-### **[Client Documentation](#client-documentation)**</br>
+#### **[Client Documentation](#client-documentation)**</br>
+
+#### **[Server Documentation](#server-documentation)**</br>
+
+#### **[Database Documentation](#database-documentation)**</br>
 
 ## Instructions for Viewing
 
@@ -20,8 +24,6 @@ This is a data persistent CRUD application that was developed with React, Expres
 ## Client Documentation
 
 ### Components
-
-#### App
 
 #### Login & Sign-Up
 
@@ -46,14 +48,20 @@ This is a data persistent CRUD application that was developed with React, Expres
 
 #### Edit Modal
 
+- Opens when an **_edit_** button is clicked.
+- After clicking the **_SAVE_** button, text provided to the **_Title_** and **_Description_** fields will overwrite the data to the corresponding task.
+- Clicking the **_UNDO_** button will exit the modal without changing the corresponding task.
+
 ## <img src='./documentation_assets/edit-modal.jpg'>
 
-#### Todo and Todos
+#### Todo & Todos
 
 ## <img src='./documentation_assets/todos.jpg'>
 
+- When the TODOS component mounts, a GET request is made to retrieve an array of todos, using the **_user_id_** within a query parameter.
 - Tasks are listed chronologically by default, but can arranged in alphabetical or reverse-alphabetical order.
 - Tasks can also be filtered by title using the search field in the navigation bar.
+- An instance of the **_Todo_** component is mounted for each todo object in the array.
 - Clicking the **_EDIT_** button will open the **_Edit Modal_** component populated with the corresponding task data.
 - Clicking the **_DELETE_** button will permanently delete the task.
 
@@ -85,9 +93,9 @@ This is a data persistent CRUD application that was developed with React, Expres
 
 #### /get-todos
 
--- Responds to a GET request.
--- Accepts **_user_id_** as a query parameter.
--- Returns the **_todo_id_**, **_title_**, and **_description_** from every row in the **_todos_** table with a matching **_user_id_**.
+- Responds to a GET request.
+- Accepts **_user_id_** as a query parameter.
+- Returns the **_todo_id_**, **_title_**, and **_description_** from every row in the **_todos_** table with a matching **_user_id_**.
 
 #### /login
 
