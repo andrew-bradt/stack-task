@@ -8,7 +8,7 @@ This is a data persistent CRUD application that was developed with React, Expres
 
 ## **[Instructions for Viewing](#instructions-for-viewing)**</br>
 
-## Instructions for Viewing
+#### Instructions for Viewing
 
 [The deployed application can be viewed here](https://andrew-bradt-todo-frontend.herokuapp.com/). You may sign up with your own email address and password to use the application, or sign in with the existing credentials:
 
