@@ -80,7 +80,7 @@ export default function Layout({ children, user_id, onUserId, onSearchChange }) 
             <AppBar>
                 <Toolbar>
                     <Typography className={classes.title} variant='h5'>
-                        Todo App
+                        Stack Task
                     </Typography>
                     {
                         (user_id)

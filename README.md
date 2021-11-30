@@ -1,4 +1,4 @@
-# Todo App - CRUD Application
+# Stack Task - CRUD Application
 
 This is a data persistent CRUD application that was developed with React, Express, Node, PostgreSQL and Material-UI. The Client, Server, and Database are deployed on Heroku.
 
