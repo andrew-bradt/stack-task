@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react'
 import { alpha, makeStyles } from '@material-ui/core';
-
+import logo from '../../assets/logo512.png';
 // MUI Components
 import {
     AppBar,
@@ -27,6 +27,9 @@ const useStyles = makeStyles((theme) => ({
     },
     inputRoot: {
         color: 'inherit',
+    },
+    logo:{
+        maxWidth:'30px',
     },
     root: {
     },
@@ -64,7 +67,8 @@ const useStyles = makeStyles((theme) => ({
     title: {
         flexGrow: 1,
         textAlign: 'left',
-
+        marginTop:'5px',
+        marginLeft:'10px'
     },
     ToolbarMargin: {
         ...theme.mixins.Toolbar,
@@ -79,8 +83,9 @@ export default function Layout({ children, user_id, onUserId, onSearchChange }) 
             {/* App Bar */}
             <AppBar>
                 <Toolbar>
+                    <img class={classes.logo} src={logo}/>
                     <Typography className={classes.title} variant='h5'>
-                        Todo App
+                        Stack Task
                     </Typography>
                     {
                         (user_id)
